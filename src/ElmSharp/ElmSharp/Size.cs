@@ -53,10 +53,10 @@ namespace ElmSharp
         /// </summary>
         /// <returns>The string is formatted as "{{Width={0} Height={1}}}".</returns>
         /// <since_tizen> preview </since_tizen>
-        public override string ToString()
-        {
-            return string.Format("{{Width={0} Height={1}}}", Width, Height);
-        }
+        //public override string ToString()
+        //{
+        //    return string.Format("{{Width={0} Height={1}}}", Width, Height);
+        //}
 
         /// <summary>
         /// Gets the hash code.
@@ -69,6 +69,11 @@ namespace ElmSharp
             {
                 return Width.GetHashCode() ^ (Height.GetHashCode() * 397);
             }
+        }
+        
+        public override string ToString()
+        {
+            return string.Format("{{Width={0} Height={1}}}", Width, Height);
         }
 
         /// <summary>
