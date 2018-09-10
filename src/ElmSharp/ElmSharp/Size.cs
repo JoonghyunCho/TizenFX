@@ -93,6 +93,11 @@ namespace ElmSharp
             return Equals((Size)obj);
         }
 
+        public string Test()
+        {
+            return string.Format("{{Width={0} Height={1}}}", Width, Height);
+	}
+
         /// <summary>
         /// Indicates whether this instance and a <see cref="Size"/> object are equal.
         /// </summary>

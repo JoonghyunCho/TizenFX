@@ -73,13 +73,15 @@ namespace Tizen.Multimedia
             set;
         }
 
+
+
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public override string ToString() =>
-            $"SampleRate={ SampleRate.ToString() }, Channels={ Channels.ToString() }, BitRate={ BitRate.ToString() }";
+        /// <since_tizen> 3 </since_tizen>   
+	public override string ToString() =>
+            $"SampleRate={ SampleRate.ToString() },  Channels={ Channels.ToString() }, BitRate={ BitRate.ToString() }";
     }
 
     /// <summary>

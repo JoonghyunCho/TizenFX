@@ -32,7 +32,9 @@ namespace ElmSharp
 
         static Interop.Ecore.EcoreTaskCallback _nativeHandler;
 
-        static EcoreMainloop()
+        
+
+	static EcoreMainloop()
         {
             Interop.Ecore.ecore_init();
             Interop.Ecore.ecore_main_loop_glib_integrate();
