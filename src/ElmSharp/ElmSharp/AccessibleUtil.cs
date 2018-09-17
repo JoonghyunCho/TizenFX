@@ -51,18 +51,27 @@ namespace ElmSharp.Accessible
     public static class AccessibleUtil
     {
 
+
+
+
         static void AtspiSignalCallback(IntPtr data, string say_signal)
         {
             GCHandle gch = GCHandle.FromIntPtr(data);
             TaskCompletionSource<ReadingStatus> tcs = (TaskCompletionSource<ReadingStatus>) gch.Target;
+
             if (say_signal.Equals("ReadingCancelled"))
             {
+
                 tcs.SetResult(ReadingStatus.Cancelled);
             }
+
+
             else if (say_signal.Equals("ReadingStopped"))
             {
+
                 tcs.SetResult(ReadingStatus.Stoppped);
             }
+
             else if (say_signal.Equals("ReadingSkipped"))
             {
                 tcs.SetResult(ReadingStatus.Skipped);

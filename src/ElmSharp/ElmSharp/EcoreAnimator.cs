@@ -16,7 +16,6 @@
 
 using System;
 using System.Collections.Generic;
-
 namespace ElmSharp
 {
     /// <summary>
@@ -28,11 +27,12 @@ namespace ElmSharp
         static readonly Dictionary<int, Func<bool>> _taskMap = new Dictionary<int, Func<bool>>();
         static readonly Object _taskLock = new Object();
         static int _newTaskId = 0;
-
         static Interop.Ecore.EcoreTaskCallback _nativeHandler;
-
         static EcoreAnimator()
         {
+
+
+
             _nativeHandler = NativeHandler;
         }
 
