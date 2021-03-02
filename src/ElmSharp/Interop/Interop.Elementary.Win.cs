@@ -24,16 +24,12 @@ internal static partial class Interop
     {
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_win_add(IntPtr parent, string name, int type);
-
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_win_util_standard_add(string name, string title);
-
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_activate(IntPtr obj);
-
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_title_set(IntPtr obj, string title);
-
         [DllImport(Libraries.Elementary, EntryPoint = "elm_win_title_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
         internal static extern IntPtr _elm_win_title_get(IntPtr obj);
 
@@ -42,16 +38,13 @@ internal static partial class Interop
             var text = _elm_win_title_get(obj);
             return Marshal.PtrToStringAnsi(text);
         }
-
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_screen_size_get(IntPtr obj, out int x, out int y, out int w, out int h);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_resize_object_del(IntPtr obj, IntPtr subobj);
-
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_resize_object_add(IntPtr obj, IntPtr subobj);
-
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_raise(IntPtr obj);
 
@@ -66,7 +59,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary, EntryPoint = "elm_win_role_get")]
         internal static extern IntPtr _elm_win_role_get(IntPtr obj);
-
         internal static string elm_win_role_get(IntPtr obj)
         {
             var text = _elm_win_role_get(obj);
@@ -384,8 +376,10 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_size_step_set(IntPtr obj, int w, int h);
 
+
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_win_socket_listen(IntPtr obj, string svcname, int svcnum, bool svcsys);
+
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_win_trap_data_get(IntPtr obj);
@@ -393,11 +387,14 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_win_trap_set(IntPtr obj, IntPtr trap);
 
+
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_win_urgent_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
+
         internal static extern void elm_win_urgent_set(IntPtr obj, bool urgent);
+
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_win_util_dialog_add(IntPtr obj, string name, string title);

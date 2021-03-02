@@ -59,6 +59,7 @@ namespace Tizen.Maps
         /// <exception cref="System.InvalidOperationException">Thrown when a native operation failed to allocate memory, and connect to the service.</exception>
         public MapView(EvasObject parent, MapService service) : base(parent)
         {
+            Log.Info(string.Format("ViewReady event callback is unset"));
             handle = new Interop.ViewHandle(service.handle, this);
             service.handle.HasOwnership = false;
             Log.Info(string.Format("MapView is created"));
@@ -755,6 +756,8 @@ namespace Tizen.Maps
             {
                 handle.UnsetEventCb(Interop.ViewEventType.Ready);
                 _viewReadyEventCallback = null;
+
+
                 Log.Info(string.Format("ViewReady event callback is unset"));
             }
         }
@@ -787,6 +790,7 @@ namespace Tizen.Maps
         /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
+            Log.Info(string.Format("ViewReady event callback is unset"));
             Dispose(true);
             GC.SuppressFinalize(this);
         }
