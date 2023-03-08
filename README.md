@@ -83,3 +83,4 @@ You can download the latest binaries with TizenFX from the link below :
 | Tizen 5.5         | http://download.tizen.org/snapshots/tizen/5.5-unified/latest/ |
 | Tizen 6.0         | http://download.tizen.org/snapshots/tizen/6.0-unified/latest/ |
 | Tizen 6.5         | http://download.tizen.org/snapshots/tizen/unified/latest/     |
+
