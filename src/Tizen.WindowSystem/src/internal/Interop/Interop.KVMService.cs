@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace Tizen.WindowSystem.Shell
 {
@@ -10,43 +11,43 @@ namespace Tizen.WindowSystem.Shell
         {
             const string lib = "libtzsh_kvm_service.so.0";
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_create")]
-            internal static extern IntPtr Create(IntPtr tzsh, uint win);
+            [LibraryImport(lib, EntryPoint = "tzsh_kvm_service_create")]
+            internal static partial nint Create(nint tzsh, uint win);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_destroy")]
-            internal static extern int Destroy(IntPtr kvmService);
+            [LibraryImport(lib, EntryPoint = "tzsh_kvm_service_destroy")]
+            internal static partial int Destroy(nint kvmService);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_perform_drop")]
-            internal static extern int PerformDrop(IntPtr kvmService);
+            [LibraryImport(lib, EntryPoint = "tzsh_kvm_service_perform_drop")]
+            internal static partial int PerformDrop(nint kvmService);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_cancel_drag")]
-            internal static extern int CancelDrag(IntPtr kvmService);
+            [LibraryImport(lib, EntryPoint = "tzsh_kvm_service_cancel_drag")]
+            internal static partial int CancelDrag(nint kvmService);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_receive_drag_data")]
-            internal static extern int ReceiveDragData(IntPtr kvmService, string mimeType);
+            [LibraryImport(lib, EntryPoint = "tzsh_kvm_service_receive_drag_data", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial int ReceiveDragData(nint kvmService, string mimeType);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_get_source_mimetypes")]
             internal static extern int GetSourceMimetypes(
-                IntPtr kvmService,
+                nint kvmService,
                 out string[] mimeTypes,
                 out int count);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_secondary_selection_set")]
-            internal static extern int SetSecondarySelection(IntPtr kvmService);
+            [LibraryImport(lib, EntryPoint = "tzsh_kvm_service_secondary_selection_set")]
+            internal static partial int SetSecondarySelection(nint kvmService);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_secondary_selection_unset")]
-            internal static extern int UnsetSecondarySelection(IntPtr kvmService);
+            [LibraryImport(lib, EntryPoint = "tzsh_kvm_service_secondary_selection_unset")]
+            internal static partial int UnsetSecondarySelection(nint kvmService);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_perform_drop_target")]
-            internal static extern int PerformDropTarget(IntPtr kvmService, uint drop_target);
+            [LibraryImport(lib, EntryPoint = "tzsh_kvm_service_perform_drop_target")]
+            internal static partial int PerformDropTarget(nint kvmService, uint drop_target);
 
-            internal delegate void KVMDragStartEventCallback(IntPtr data, IntPtr kvmService);
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_drag_start_cb_set")]
-            internal static extern int SetDragStartEventHandler(IntPtr kvmService, KVMDragStartEventCallback func, IntPtr data);
+            internal delegate void KVMDragStartEventCallback(nint data, nint kvmService);
+            [LibraryImport(lib, EntryPoint = "tzsh_kvm_service_drag_start_cb_set")]
+            internal static partial int SetDragStartEventHandler(nint kvmService, KVMDragStartEventCallback func, nint data);
 
-            internal delegate void KVMDragEndEventCallback(IntPtr data, IntPtr kvmService);
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_drag_end_cb_set")]
-            internal static extern int SetDragEndEventHandler(IntPtr kvmService, KVMDragEndEventCallback func, IntPtr data);
+            internal delegate void KVMDragEndEventCallback(nint data, nint kvmService);
+            [LibraryImport(lib, EntryPoint = "tzsh_kvm_service_drag_end_cb_set")]
+            internal static partial int SetDragEndEventHandler(nint kvmService, KVMDragEndEventCallback func, nint data);
         }
     }
 }

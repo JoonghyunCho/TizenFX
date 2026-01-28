@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace Tizen.WindowSystem.Shell
 {
@@ -10,29 +11,29 @@ namespace Tizen.WindowSystem.Shell
         {
             const string lib = "libtzsh_softkey_service.so.0";
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_service_create")]
-            internal static extern IntPtr Create(IntPtr tzsh, uint win);
+            [LibraryImport(lib, EntryPoint = "tzsh_softkey_service_create")]
+            internal static partial nint Create(nint tzsh, uint win);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_service_destroy")]
-            internal static extern int Destroy(IntPtr softkeyService);
+            [LibraryImport(lib, EntryPoint = "tzsh_softkey_service_destroy")]
+            internal static partial int Destroy(nint softkeyService);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_service_show")]
-            internal static extern int Show(IntPtr softkeyService);
+            [LibraryImport(lib, EntryPoint = "tzsh_softkey_service_show")]
+            internal static partial int Show(nint softkeyService);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_service_hide")]
-            internal static extern int Hide(IntPtr softkeyService);
+            [LibraryImport(lib, EntryPoint = "tzsh_softkey_service_hide")]
+            internal static partial int Hide(nint softkeyService);
 
-            internal delegate void SoftkeyVisibleEventCallback(IntPtr data, IntPtr softkeyService, int visible);
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_service_visible_request_cb_set")]
-            internal static extern int SetVisibleEventHandler(IntPtr softkeyService, SoftkeyVisibleEventCallback func, IntPtr data);
+            internal delegate void SoftkeyVisibleEventCallback(nint data, nint softkeyService, int visible);
+            [LibraryImport(lib, EntryPoint = "tzsh_softkey_service_visible_request_cb_set")]
+            internal static partial int SetVisibleEventHandler(nint softkeyService, SoftkeyVisibleEventCallback func, nint data);
 
-            internal delegate void SoftkeyExpandEventCallback(IntPtr data, IntPtr softkeyService, int expand);
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_service_expand_request_cb_set")]
-            internal static extern int SetExpandEventHandler(IntPtr softkeyService, SoftkeyExpandEventCallback func, IntPtr data);
+            internal delegate void SoftkeyExpandEventCallback(nint data, nint softkeyService, int expand);
+            [LibraryImport(lib, EntryPoint = "tzsh_softkey_service_expand_request_cb_set")]
+            internal static partial int SetExpandEventHandler(nint softkeyService, SoftkeyExpandEventCallback func, nint data);
 
-            internal delegate void SoftkeyOpacityEventCallback(IntPtr data, IntPtr softkeyService, int opacity);
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_service_opacity_request_cb_set")]
-            internal static extern int SetOpacityEventHandler(IntPtr softkeyService, SoftkeyOpacityEventCallback func, IntPtr data);
+            internal delegate void SoftkeyOpacityEventCallback(nint data, nint softkeyService, int opacity);
+            [LibraryImport(lib, EntryPoint = "tzsh_softkey_service_opacity_request_cb_set")]
+            internal static partial int SetOpacityEventHandler(nint softkeyService, SoftkeyOpacityEventCallback func, nint data);
 
             internal enum VisibleState
             {

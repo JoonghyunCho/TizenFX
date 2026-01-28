@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace Tizen.WindowSystem.Shell
 {
@@ -10,32 +11,32 @@ namespace Tizen.WindowSystem.Shell
         {
             const string lib = "libtzsh_quickpanel_service.so.0";
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_quickpanel_service_create_with_type")]
-            internal static extern IntPtr CreateWithType(IntPtr tzsh, uint win, int type);
+            [LibraryImport(lib, EntryPoint = "tzsh_quickpanel_service_create_with_type")]
+            internal static partial nint CreateWithType(nint tzsh, uint win, int type);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_quickpanel_service_destroy")]
-            internal static extern int Destroy(IntPtr service);
+            [LibraryImport(lib, EntryPoint = "tzsh_quickpanel_service_destroy")]
+            internal static partial int Destroy(nint service);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_quickpanel_service_type_get")]
-            internal static extern int GetType(IntPtr service, out int type);
+            [LibraryImport(lib, EntryPoint = "tzsh_quickpanel_service_type_get")]
+            internal static partial int GetType(nint service, out int type);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_quickpanel_service_show")]
-            internal static extern int Show(IntPtr service);
+            [LibraryImport(lib, EntryPoint = "tzsh_quickpanel_service_show")]
+            internal static partial int Show(nint service);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_quickpanel_service_hide")]
-            internal static extern int Hide(IntPtr service);
+            [LibraryImport(lib, EntryPoint = "tzsh_quickpanel_service_hide")]
+            internal static partial int Hide(nint service);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_quickpanel_service_content_region_set")]
-            internal static extern int SetContentRegion(IntPtr service, uint angle, IntPtr region);
+            [LibraryImport(lib, EntryPoint = "tzsh_quickpanel_service_content_region_set")]
+            internal static partial int SetContentRegion(nint service, uint angle, nint region);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_quickpanel_service_handler_region_set")]
-            internal static extern int SetHandlerRegion(IntPtr service, uint angle, IntPtr region);
+            [LibraryImport(lib, EntryPoint = "tzsh_quickpanel_service_handler_region_set")]
+            internal static partial int SetHandlerRegion(nint service, uint angle, nint region);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_quickpanel_service_effect_type_set")]
-            internal static extern int SetEffectType(IntPtr service, int type);
+            [LibraryImport(lib, EntryPoint = "tzsh_quickpanel_service_effect_type_set")]
+            internal static partial int SetEffectType(nint service, int type);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_quickpanel_service_scroll_lock")]
-            internal static extern int LockScroll(IntPtr service, bool locked);
+            [LibraryImport(lib, EntryPoint = "tzsh_quickpanel_service_scroll_lock")]
+            internal static partial int LockScroll(nint service, [MarshalAs(UnmanagedType.I1)] bool locked);
         }
     }
 }

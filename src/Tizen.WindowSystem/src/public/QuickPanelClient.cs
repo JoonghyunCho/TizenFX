@@ -15,11 +15,13 @@
  *
  */
 
+extern alias TizenSystemInfo;
+
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Tizen.Applications.Exceptions;
-using Tizen.System;
+using TizenSystemInfo::Tizen.System;
 using Tizen.Common;
 
 namespace Tizen.WindowSystem.Shell

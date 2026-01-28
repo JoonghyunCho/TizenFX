@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace Tizen.WindowSystem.Shell
 {
@@ -10,17 +11,17 @@ namespace Tizen.WindowSystem.Shell
         {
             const string lib = "libtzsh_taskbar_service.so.0";
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_taskbar_service_create")]
-            internal static extern IntPtr Create(IntPtr tzsh, uint win);
+            [LibraryImport(lib, EntryPoint = "tzsh_taskbar_service_create")]
+            internal static partial nint Create(nint tzsh, uint win);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_taskbar_service_destroy")]
-            internal static extern int Destroy(IntPtr taskbarService);
+            [LibraryImport(lib, EntryPoint = "tzsh_taskbar_service_destroy")]
+            internal static partial int Destroy(nint taskbarService);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_taskbar_service_place_type_set")]
-            internal static extern int SetPlaceType(IntPtr taskbarService, int placeType);
+            [LibraryImport(lib, EntryPoint = "tzsh_taskbar_service_place_type_set")]
+            internal static partial int SetPlaceType(nint taskbarService, int placeType);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_taskbar_service_size_set")]
-            internal static extern int SetSize(IntPtr taskbarService, uint width, uint height);
+            [LibraryImport(lib, EntryPoint = "tzsh_taskbar_service_size_set")]
+            internal static partial int SetSize(nint taskbarService, uint width, uint height);
         }
     }
 }

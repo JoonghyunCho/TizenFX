@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace Tizen.WindowSystem.Shell
 {
@@ -10,32 +11,32 @@ namespace Tizen.WindowSystem.Shell
         {
             const string lib = "libtzsh_softkey.so.0";
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_create")]
-            internal static extern IntPtr Create(IntPtr tzsh, uint win);
+            [LibraryImport(lib, EntryPoint = "tzsh_softkey_create")]
+            internal static partial nint Create(nint tzsh, uint win);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_destroy")]
-            internal static extern int Destroy(IntPtr softkeyClient);
+            [LibraryImport(lib, EntryPoint = "tzsh_softkey_destroy")]
+            internal static partial int Destroy(nint softkeyClient);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_global_show")]
-            internal static extern int Show(IntPtr softkeyClient);
+            [LibraryImport(lib, EntryPoint = "tzsh_softkey_global_show")]
+            internal static partial int Show(nint softkeyClient);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_global_hide")]
-            internal static extern int Hide(IntPtr softkeyClient);
+            [LibraryImport(lib, EntryPoint = "tzsh_softkey_global_hide")]
+            internal static partial int Hide(nint softkeyClient);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_global_visible_state_get")]
-            internal static extern int GetVisibleState(IntPtr softkeyClient, out int visible);
+            [LibraryImport(lib, EntryPoint = "tzsh_softkey_global_visible_state_get")]
+            internal static partial int GetVisibleState(nint softkeyClient, out int visible);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_global_expand_state_set")]
-            internal static extern int SetExpandState(IntPtr softkeyClient, int expand);
+            [LibraryImport(lib, EntryPoint = "tzsh_softkey_global_expand_state_set")]
+            internal static partial int SetExpandState(nint softkeyClient, int expand);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_global_expand_state_get")]
-            internal static extern int GetExpandState(IntPtr softkeyClient, out int expand);
+            [LibraryImport(lib, EntryPoint = "tzsh_softkey_global_expand_state_get")]
+            internal static partial int GetExpandState(nint softkeyClient, out int expand);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_global_opacity_state_set")]
-            internal static extern int SetOpacityState(IntPtr softkeyClient, int opacity);
+            [LibraryImport(lib, EntryPoint = "tzsh_softkey_global_opacity_state_set")]
+            internal static partial int SetOpacityState(nint softkeyClient, int opacity);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_global_opacity_state_get")]
-            internal static extern int GetOpacityState(IntPtr softkeyClient, out int opacity);
+            [LibraryImport(lib, EntryPoint = "tzsh_softkey_global_opacity_state_get")]
+            internal static partial int GetOpacityState(nint softkeyClient, out int opacity);
 
             internal enum VisibleState
             {

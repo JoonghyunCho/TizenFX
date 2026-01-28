@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace Tizen.WindowSystem
 {
@@ -10,32 +11,32 @@ namespace Tizen.WindowSystem
         {
             const string lib = "libcapi-ui-efl-util.so.0";
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_initialize_generator")]
-            internal static extern IntPtr Init(int devType);
+            [LibraryImport(lib, EntryPoint = "efl_util_input_initialize_generator")]
+            internal static partial nint Init(int devType);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_initialize_generator_with_name")]
-            internal static extern IntPtr InitWithName(int devType, string devName);
+            [LibraryImport(lib, EntryPoint = "efl_util_input_initialize_generator_with_name", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial nint InitWithName(int devType, string devName);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_initialize_generator_with_sync")]
-            internal static extern IntPtr SyncInit(int devType, string devName);
+            [LibraryImport(lib, EntryPoint = "efl_util_input_initialize_generator_with_sync", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial nint SyncInit(int devType, string devName);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_deinitialize_generator")]
-            internal static extern ErrorCode Deinit(IntPtr inputGenHandler);
+            [LibraryImport(lib, EntryPoint = "efl_util_input_deinitialize_generator")]
+            internal static partial ErrorCode Deinit(nint inputGenHandler);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_generate_key")]
-            internal static extern ErrorCode GenerateKey(IntPtr inputGenHandler, string keyName, int pressed);
+            [LibraryImport(lib, EntryPoint = "efl_util_input_generate_key", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ErrorCode GenerateKey(nint inputGenHandler, string keyName, int pressed);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_generate_pointer")]
-            internal static extern ErrorCode GeneratePointer(IntPtr inputGenHandler, int buttons, int pointerType, int x, int y);
+            [LibraryImport(lib, EntryPoint = "efl_util_input_generate_pointer")]
+            internal static partial ErrorCode GeneratePointer(nint inputGenHandler, int buttons, int pointerType, int x, int y);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_generate_wheel")]
-            internal static extern ErrorCode GenerateWheel(IntPtr inputGenHandler, int wheelType, int value);
+            [LibraryImport(lib, EntryPoint = "efl_util_input_generate_wheel")]
+            internal static partial ErrorCode GenerateWheel(nint inputGenHandler, int wheelType, int value);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_generate_touch")]
-            internal static extern ErrorCode GenerateTouch(IntPtr inputGenHandler, int idx, int touchType, int x, int y);
+            [LibraryImport(lib, EntryPoint = "efl_util_input_generate_touch")]
+            internal static partial ErrorCode GenerateTouch(nint inputGenHandler, int idx, int touchType, int x, int y);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_generate_touch_axis")]
-            internal static extern ErrorCode GenerateTouchAxis(IntPtr inputGenHandler, int idx, int touchType, int x, int y, double radius_x, double radius_y, double pressure, double angle, double palm);
+            [LibraryImport(lib, EntryPoint = "efl_util_input_generate_touch_axis")]
+            internal static partial ErrorCode GenerateTouchAxis(nint inputGenHandler, int idx, int touchType, int x, int y, double radius_x, double radius_y, double pressure, double angle, double palm);
 
             // Enumeration of input device types.
             // The device type may be used overlapped.

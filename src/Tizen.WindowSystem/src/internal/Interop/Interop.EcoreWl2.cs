@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace Tizen.WindowSystem
 {
@@ -10,8 +11,8 @@ namespace Tizen.WindowSystem
         {
             const string lib = "libecore_wl2.so.1";
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "ecore_wl2_window_id_get")]
-            internal static extern int GetWindowId(IntPtr win);
+            [LibraryImport(lib, EntryPoint = "ecore_wl2_window_id_get")]
+            internal static partial int GetWindowId(nint win);
         }
     }
 }

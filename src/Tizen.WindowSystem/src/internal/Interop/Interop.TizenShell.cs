@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace Tizen.WindowSystem.Shell
 {
@@ -10,14 +11,14 @@ namespace Tizen.WindowSystem.Shell
         {
             const string lib = "libtzsh_common.so.0";
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_create")]
-            internal static extern IntPtr Create(int type);
+            [LibraryImport(lib, EntryPoint = "tzsh_create")]
+            internal static partial nint Create(int type);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_destroy")]
-            internal static extern int Destroy(IntPtr tzsh);
+            [LibraryImport(lib, EntryPoint = "tzsh_destroy")]
+            internal static partial int Destroy(nint tzsh);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_event_type_new")]
-            internal static extern int NewEventType(IntPtr tzsh, string name);
+            [LibraryImport(lib, EntryPoint = "tzsh_event_type_new", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial int NewEventType(nint tzsh, string name);
 
             internal enum ToolKitType
             {
