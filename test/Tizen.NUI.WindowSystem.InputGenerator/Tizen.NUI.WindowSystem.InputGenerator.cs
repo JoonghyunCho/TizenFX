@@ -19,7 +19,7 @@ using System;
 using Tizen;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.WindowSystem;
+using Tizen.WindowSystem;
 using System.Collections.Generic;
 
 namespace Tizen.NUI.WindowSystem
@@ -35,7 +35,7 @@ namespace Tizen.NUI.WindowSystem
         void Initialize()
         {
             Window win = Window.Instance;
-            inputGen = new InputGenerator(InputGenerator.DeviceType.All, null);
+            inputGen = new InputGenerator(InputGeneratorDeviceType.All, null);
 
             win.WindowSize = new Size2D(500, 500);
             win.KeyEvent += OnKeyEvent;

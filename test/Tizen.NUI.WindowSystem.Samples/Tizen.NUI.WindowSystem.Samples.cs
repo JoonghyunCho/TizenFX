@@ -5,38 +5,41 @@ using Tizen.Applications.ComponentBased.Common;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
-using Tizen.NUI.WindowSystem;
+using Tizen.WindowSystem;
+using Tizen.WindowSystem.Shell;
 using Tizen.Common;
 
 namespace Tizen.NUI.WindowSystem.Samples
 {
+
+
     class Program : NUIApplication
     {
-        Shell.TizenShell tzShell;
-        Shell.QuickPanelClient qpClient;
+        TizenShell tzShell;
+        QuickPanelClient qpClient;
         Button BtnClient;
         TextLabel textClientVisible;
         TextLabel textClientScrollable;
         TextLabel textClientOrientation;
 
-        Shell.QuickPanelService qpService;
-        Shell.TizenRegion qpRegion;
+        QuickPanelService qpService;
+        TizenRegion qpRegion;
         Button BtnService;
         Timer _timer;
 
-        Shell.SoftkeyClient softkeyClient;
+        SoftkeyClient softkeyClient;
         Button BtnSoftkeyClient;
         TextLabel textSoftkeyClientVisible;
         TextLabel textSoftkeyClientExpand;
         TextLabel textSoftkeyClientOpacity;
 
-        Shell.SoftkeyService softkeyService;
+        SoftkeyService softkeyService;
         Button BtnSoftkeyService;
         TextLabel textSoftkeyServiceVisible;
         TextLabel textSoftkeyServiceExpand;
         TextLabel textSoftkeyServiceOpacity;
 
-        Shell.ScreensaverService screensaverService;
+        ScreensaverService screensaverService;
         Button BtnScreensaverService;
         TextLabel textScreensaverServiceTitle;
 		
@@ -104,7 +107,7 @@ namespace Tizen.NUI.WindowSystem.Samples
             BtnSoftkeyService.ClickEvent += BtnSoftkeyService_ClickEvent;
             BtnScreensaverService.ClickEvent += BtnScreensaverService_ClickEvent;
 
-            tzShell = new Shell.TizenShell();
+            tzShell = new TizenShell();
 
             window.AddAvailableOrientation(Window.WindowOrientation.Portrait);
             window.AddAvailableOrientation(Window.WindowOrientation.Landscape);
@@ -120,12 +123,12 @@ namespace Tizen.NUI.WindowSystem.Samples
             }
         }
 
-        public void OnVisibleEvent(object sender, Shell.QuickPanelClient.VisibleState state)
+        public void OnVisibleEvent(object sender, QuickPanelVisibleState state)
         {
             textClientVisible.Text = $"Visible: {qpClient.Visible}";
         }
 
-        public void OnOrientationEvent(object sender, Window.WindowOrientation state)
+        public void OnOrientationEvent(object sender, WindowOrientation state)
         {
             textClientOrientation.Text = $"Orientation: {qpClient.Orientation}";
         }
@@ -139,7 +142,7 @@ namespace Tizen.NUI.WindowSystem.Samples
             window.Remove(BtnScreensaverService);
             window.Remove(BtnSoftkeyService);
             window.Remove(BtnSoftkeyClient);
-            qpClient = new Shell.QuickPanelClient(tzShell, (IWindowProvider)window, Shell.QuickPanelClient.Types.SystemDefault);
+            qpClient = new QuickPanelClient(tzShell, (IWindowProvider)window, QuickPanelType.SystemDefault);
 
             qpClient.VisibleChanged += OnVisibleEvent;
             qpClient.OrientationChanged += OnOrientationEvent;
@@ -224,17 +227,17 @@ namespace Tizen.NUI.WindowSystem.Samples
 
         private void BtnScrollableSet_ClickEvent(object sender, Button.ClickEventArgs e)
         {
-            qpClient.Scrollable = Shell.QuickPanelClient.ScrollableState.Set;
+            qpClient.Scrollable = QuickPanelScrollableState.Set;
             textClientScrollable.Text = $"Scrollable: {qpClient.Scrollable}";
         }
         private void BtnScrollableUnset_ClickEvent(object sender, Button.ClickEventArgs e)
         {
-            qpClient.Scrollable = Shell.QuickPanelClient.ScrollableState.Unset;
+            qpClient.Scrollable = QuickPanelScrollableState.Unset;
             textClientScrollable.Text = $"Scrollable: {qpClient.Scrollable}";
         }
         private void BtnScrollableRetain_ClickEvent(object sender, Button.ClickEventArgs e)
         {
-            qpClient.Scrollable = Shell.QuickPanelClient.ScrollableState.Retain;
+            qpClient.Scrollable = QuickPanelScrollableState.Retain;
             textClientScrollable.Text = $"Scrollable: {qpClient.Scrollable}";
         }
         private void BtnClientShow_ClickEvent(object sender, Button.ClickEventArgs e)
@@ -249,15 +252,15 @@ namespace Tizen.NUI.WindowSystem.Samples
         private void BtnService_ClickEvent(object sender, Button.ClickEventArgs e)
         {
             Window window = NUIApplication.GetDefaultWindow();
-            Shell.QuickPanelService.Types type = Shell.QuickPanelService.Types.AppsMenu;
+            QuickPanelType type = QuickPanelType.AppsMenu;
 
             window.Remove(BtnService);
             window.Remove(BtnClient);
             window.Remove(BtnScreensaverService);
             window.Remove(BtnSoftkeyService);
             window.Remove(BtnSoftkeyClient);
-            qpService = new Shell.QuickPanelService(tzShell, (IWindowProvider)window, type);
-            //if ((type == Shell.QuickPanelService.Types.ContextMenu) || (type == Shell.QuickPanelService.Types.AppsMenu))
+            qpService = new QuickPanelService(tzShell, (IWindowProvider)window, type);
+            //if ((type == QuickPanelType.ContextMenu) || (type == QuickPanelType.AppsMenu))
                 //window.AddAuxiliaryHint("wm.policy.win.user.geometry", "1");
 
             TextLabel textServiceType = new TextLabel($"Type: {qpService.ServiceType}");
@@ -353,12 +356,12 @@ namespace Tizen.NUI.WindowSystem.Samples
 
             window.Add(BtnTimerStop);
 
-            qpRegion = new Shell.TizenRegion(tzShell);
+            qpRegion = new TizenRegion(tzShell);
             qpRegion.Add(window.WindowPosition.X, window.WindowPosition.Y, window.WindowSize.Width, window.WindowSize.Height - 50);
             qpService.SetContentRegion(0, qpRegion);
             qpRegion.Dispose();
 
-            qpRegion = new Shell.TizenRegion(tzShell);
+            qpRegion = new TizenRegion(tzShell);
             qpRegion.Add(window.WindowPosition.X, window.WindowPosition.Y + window.WindowSize.Height - 50, window.WindowSize.Width, 50);
             qpService.SetHandlerRegion(0, qpRegion);
             qpRegion.Dispose();
@@ -396,15 +399,15 @@ namespace Tizen.NUI.WindowSystem.Samples
 
         private void BtnEffectSwipe_ClickEvent(object sender, Button.ClickEventArgs e)
         {
-            qpService.SetEffectType(Shell.QuickPanelService.EffectType.Swipe);
+            qpService.SetEffectType(QuickPanelEffectType.Swipe);
         }
         private void BtnEffectMove_ClickEvent(object sender, Button.ClickEventArgs e)
         {
-            qpService.SetEffectType(Shell.QuickPanelService.EffectType.Move);
+            qpService.SetEffectType(QuickPanelEffectType.Move);
         }
         private void BtnEffectAppCustom_ClickEvent(object sender, Button.ClickEventArgs e)
         {
-            qpService.SetEffectType(Shell.QuickPanelService.EffectType.Custom);
+            qpService.SetEffectType(QuickPanelEffectType.Custom);
         }
         private void BtnLockTrue_ClickEvent(object sender, Button.ClickEventArgs e)
         {
@@ -428,7 +431,7 @@ namespace Tizen.NUI.WindowSystem.Samples
             window.Remove(BtnScreensaverService);
             window.Remove(BtnSoftkeyService);
             window.Remove(BtnSoftkeyClient);
-            softkeyClient = new Shell.SoftkeyClient(tzShell, (IWindowProvider)window);
+            softkeyClient = new SoftkeyClient(tzShell, (IWindowProvider)window);
 
             textSoftkeyClientVisible = new TextLabel($"Visible: {softkeyClient.Visible}");
             textSoftkeyClientVisible.Position = new Position(0, -100);
@@ -520,25 +523,25 @@ namespace Tizen.NUI.WindowSystem.Samples
 
         private void BtnExpandSetOn_ClickEvent(object sender, Button.ClickEventArgs e)
         {
-            softkeyClient.Expand = Shell.SoftkeyExpandState.On;
+            softkeyClient.Expand = SoftkeyExpandState.On;
             textSoftkeyClientExpand.Text = $"Expand: {softkeyClient.Expand}";
         }
 
         private void BtnExpandSetOff_ClickEvent(object sender, Button.ClickEventArgs e)
         {
-            softkeyClient.Expand = Shell.SoftkeyExpandState.Off;
+            softkeyClient.Expand = SoftkeyExpandState.Off;
             textSoftkeyClientExpand.Text = $"Expand: {softkeyClient.Expand}";
         }
 
         private void BtnOpacitySetOpaque_ClickEvent(object sender, Button.ClickEventArgs e)
         {
-            softkeyClient.Opacity = Shell.SoftkeyOpacityState.Opaque;
+            softkeyClient.Opacity = SoftkeyOpacityState.Opaque;
             textSoftkeyClientOpacity.Text = $"Opacity: {softkeyClient.Opacity}";
         }
 
         private void BtnOpacitySetTransparent_ClickEvent(object sender, Button.ClickEventArgs e)
         {
-            softkeyClient.Opacity = Shell.SoftkeyOpacityState.Transparent;
+            softkeyClient.Opacity = SoftkeyOpacityState.Transparent;
             textSoftkeyClientOpacity.Text = $"Opacity: {softkeyClient.Opacity}";
         }
 
@@ -573,7 +576,7 @@ namespace Tizen.NUI.WindowSystem.Samples
             window.Remove(BtnScreensaverService);
             window.Remove(BtnSoftkeyService);
             window.Remove(BtnSoftkeyClient);
-            softkeyService = new Shell.SoftkeyService(tzShell, (IWindowProvider)window);
+            softkeyService = new SoftkeyService(tzShell, (IWindowProvider)window);
 
             textSoftkeyServiceVisible = new TextLabel($"Visible: None");
             textSoftkeyServiceVisible.Position = new Position(0, -100);
@@ -631,11 +634,11 @@ namespace Tizen.NUI.WindowSystem.Samples
             softkeyService.OpacityChanged += OnSoftkeyServiceOpacityEvent;
         }
 
-        public void OnSoftkeyServiceVisibleEvent(object sender, Shell.SoftkeyVisibleState state)
+        public void OnSoftkeyServiceVisibleEvent(object sender, SoftkeyVisibleState state)
         {
-            Shell.SoftkeyService obj = (Shell.SoftkeyService)sender;
+            SoftkeyService obj = (SoftkeyService)sender;
             textSoftkeyServiceVisible.Text = $"Visible: {state}";
-            if (state == Shell.SoftkeyVisibleState.Shown)
+            if (state == SoftkeyVisibleState.Shown)
             {
                 obj.Show();
             }
@@ -645,12 +648,12 @@ namespace Tizen.NUI.WindowSystem.Samples
             }
         }
 
-        public void OnSoftkeyServiceExpandEvent(object sender, Shell.SoftkeyExpandState state)
+        public void OnSoftkeyServiceExpandEvent(object sender, SoftkeyExpandState state)
         {
             textSoftkeyServiceExpand.Text = $"Expand: {state}";
         }
 
-        public void OnSoftkeyServiceOpacityEvent(object sender, Shell.SoftkeyOpacityState state)
+        public void OnSoftkeyServiceOpacityEvent(object sender, SoftkeyOpacityState state)
         {
             textSoftkeyServiceOpacity.Text = $"Opacity: {state}";
         }
@@ -676,7 +679,7 @@ namespace Tizen.NUI.WindowSystem.Samples
             window.Remove(BtnScreensaverService);
             window.Remove(BtnSoftkeyService);
             window.Remove(BtnSoftkeyClient);
-            screensaverService = new Shell.ScreensaverService(tzShell, (IWindowProvider)window);
+            screensaverService = new ScreensaverService(tzShell, (IWindowProvider)window);
 
             textScreensaverServiceTitle = new TextLabel($"Screen Saver");
             textScreensaverServiceTitle.Position = new Position(0, 0);

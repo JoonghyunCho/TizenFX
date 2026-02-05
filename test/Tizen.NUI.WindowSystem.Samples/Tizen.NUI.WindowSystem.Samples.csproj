@@ -20,7 +20,7 @@
 		<ProjectReference Include="../../src/Tizen.Log/Tizen.Log.csproj" />
 		<ProjectReference Include="../../src/Tizen.System.SystemSettings/Tizen.System.SystemSettings.csproj" />
 		<ProjectReference Include="../../src/Tizen.NUI/Tizen.NUI.csproj" />
-		<ProjectReference Include="../../src/Tizen.NUI.WindowSystem/Tizen.NUI.WindowSystem.csproj" />
+		<ProjectReference Include="../../src/Tizen.WindowSystem/Tizen.WindowSystem.csproj" />
 		<ProjectReference Include="../../src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
 	</ItemGroup>
 

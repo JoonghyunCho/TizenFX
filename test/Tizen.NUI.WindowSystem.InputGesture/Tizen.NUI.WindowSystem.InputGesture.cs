@@ -2,7 +2,8 @@
 using Tizen;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.WindowSystem;
+using Tizen.WindowSystem;
+using WS = Tizen.WindowSystem;
 using System.Collections.Generic;
 
 namespace Tizen.NUI.WindowSystem
@@ -56,36 +57,37 @@ namespace Tizen.NUI.WindowSystem
 
             if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "S" || e.Key.KeyPressedName == "s"))
             {
-                if (edgeSwipeG == IntPtr.Zero)
-                    edgeSwipeG = inputGesture.CreateEdgeSwipeData(2, GestureEdge.Left);
+                if (edgeSwipeGesture == null)
+                    edgeSwipeGesture = inputGesture.CreateEdgeSwipe(2, GestureEdge.Left);
 
-                if (edgeSwipeG == IntPtr.Zero)
+                if (edgeSwipeGesture == null)
                 {
-                    centerLabel.Text = "'S' Key Pressed. edgeSwipeG NULL!!";
+                    centerLabel.Text = "'S' Key Pressed. edgeSwipeGesture NULL!!";
                     return;
                 }
 
                 if (!edgeSwipeGrabbed)
                 {
-                    inputGesture.GrabGesture(edgeSwipeG);
+                    edgeSwipeGesture.Grab();
                     centerLabel.Text = "'S' Key Pressed. edgeSwipe Grabbed";
 
-                    inputGesture.EdgeSwipeEventHandler += _edgeSwipeEventHandler;
+                    edgeSwipeGesture.Detected += _edgeSwipeEventHandler;
                     edgeSwipeGrabbed = true;
                 }
                 else
                 {
-                    inputGesture.UngrabGesture(edgeSwipeG);
+                    edgeSwipeGesture.Ungrab();
+                    edgeSwipeGesture.Detected -= _edgeSwipeEventHandler;
                     centerLabel.Text = "'S' Key Pressed. edgeSwipe Ungrabbed";
                     edgeSwipeGrabbed = false;
                 }
             }
             if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "D" || e.Key.KeyPressedName == "d"))
             {
-                if (edgeDragG == IntPtr.Zero)
-                    edgeDragG = inputGesture.CreateEdgeDragData(2, GestureEdge.Right);
+                if (edgeDragGesture == null)
+                    edgeDragGesture = inputGesture.CreateEdgeDrag(2, GestureEdge.Right);
 
-                if (edgeDragG == IntPtr.Zero)
+                if (edgeDragGesture == null)
                 {
                     centerLabel.Text = "'D' Key Pressed. edgeDrag NULL!!!";
                     return;
@@ -93,25 +95,26 @@ namespace Tizen.NUI.WindowSystem
 
                 if (!edgeDragGrabbed)
                 {
-                    inputGesture.GrabGesture(edgeDragG);
+                    edgeDragGesture.Grab();
                     centerLabel.Text = "'D' Key Pressed. edgeDrag Grabbed";
 
-                    inputGesture.EdgeDragEventHandler += _edgeDragEventHandler;
+                    edgeDragGesture.Detected += _edgeDragEventHandler;
                     edgeDragGrabbed = true;
                 }
                 else
                 {
-                    inputGesture.UngrabGesture(edgeDragG);
+                    edgeDragGesture.Ungrab();
+                    edgeDragGesture.Detected -= _edgeDragEventHandler;
                     centerLabel.Text = "'D' Key Pressed. edgeDrag Ungrabbed";
                     edgeDragGrabbed = false;
                 }
             }
             if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "T" || e.Key.KeyPressedName == "t"))
             {
-                if (tapG == IntPtr.Zero)
-                    tapG = inputGesture.CreateTapData(3, 2);
+                if (tapGesture == null)
+                    tapGesture = inputGesture.CreateTap(3, 2);
 
-                if (tapG == IntPtr.Zero)
+                if (tapGesture == null)
                 {
                     centerLabel.Text = "'T' Key Pressed. Tap NULL!!!";
                     return;
@@ -119,25 +122,26 @@ namespace Tizen.NUI.WindowSystem
 
                 if (!tapGrabbed)
                 {
-                    inputGesture.GrabGesture(tapG);
+                    tapGesture.Grab();
                     centerLabel.Text = "'T' Key Pressed. Tap Grabbed";
 
-                    inputGesture.TapEventHandler += _tapEventHandler;
+                    tapGesture.Detected += _tapEventHandler;
                     tapGrabbed = true;
                 }
                 else
                 {
-                    inputGesture.UngrabGesture(tapG);
+                    tapGesture.Ungrab();
+                    tapGesture.Detected -= _tapEventHandler;
                     centerLabel.Text = "'T' Key Pressed. Tap Ungrabbed";
                     tapGrabbed = false;
                 }
             }
             if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "P" || e.Key.KeyPressedName == "p"))
             {
-                if (palmG == IntPtr.Zero)
-                    palmG = inputGesture.CreatePalmCoverData();
+                if (palmGesture == null)
+                    palmGesture = inputGesture.CreatePalmCover();
 
-                if (palmG == IntPtr.Zero)
+                if (palmGesture == null)
                 {
                     centerLabel.Text = "'P' Key Pressed. PalmCover NULL!!!";
                     return;
@@ -145,42 +149,44 @@ namespace Tizen.NUI.WindowSystem
 
                 if (!palmCoverGrabbed)
                 {
-                    inputGesture.GrabGesture(palmG);
+                    palmGesture.Grab();
                     centerLabel.Text = "'P' Key Pressed. PalmCover Grabbed";
 
-                    inputGesture.PalmCoverEventHandler += _palmCoverEventHandler;
+                    palmGesture.Detected += _palmCoverEventHandler;
                     palmCoverGrabbed = true;
                 }
                 else
                 {
-                    inputGesture.UngrabGesture(palmG);
+                    palmGesture.Ungrab();
+                    palmGesture.Detected -= _palmCoverEventHandler;
                     centerLabel.Text = "'P' Key Pressed. PalmCover Ungrabbed";
                     palmCoverGrabbed = false;
                 }
             }
             if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "G" || e.Key.KeyPressedName == "g"))
             {
-                if (edgeSwipeG == IntPtr.Zero)
-                    edgeSwipeG = inputGesture.CreateEdgeSwipeData(1, GestureEdge.Left);
+                if (edgeSwipeGesture == null)
+                    edgeSwipeGesture = inputGesture.CreateEdgeSwipe(1, GestureEdge.Left);
 
-                if (edgeSwipeG == IntPtr.Zero)
+                if (edgeSwipeGesture == null)
                 {
-                    centerLabel.Text = "'G' Key Pressed. edgeSwipeG NULL!!";
+                    centerLabel.Text = "'G' Key Pressed. edgeSwipeGesture NULL!!";
                     return;
                 }
 
                 if (!edgeSwipeGrabbed)
                 {
-                    inputGesture.SetGestureGrabMode(edgeSwipeG, GestureGrabMode.Shared);
-                    inputGesture.GrabGesture(edgeSwipeG);
+                    edgeSwipeGesture.SetGrabMode(GestureGrabMode.Shared);
+                    edgeSwipeGesture.Grab();
                     centerLabel.Text = "'G' Key Pressed. edgeSwipe Shared Grabbed";
 
-                    inputGesture.EdgeSwipeEventHandler += _edgeSwipeEventHandler;
+                    edgeSwipeGesture.Detected += _edgeSwipeEventHandler;
                     edgeSwipeGrabbed = true;
                 }
                 else
                 {
-                    inputGesture.UngrabGesture(edgeSwipeG);
+                    edgeSwipeGesture.Ungrab();
+                    edgeSwipeGesture.Detected -= _edgeSwipeEventHandler;
                     centerLabel.Text = "'G' Key Pressed. edgeSwipe Ungrabbed";
                     edgeSwipeGrabbed = false;
                 }
@@ -190,15 +196,6 @@ namespace Tizen.NUI.WindowSystem
         private bool OnTouchEvent(object sender, View.TouchEventArgs e)
         {
             touchCounter++;
-            // if (e.Touch.GetState(0) == PointStateType.Down)
-            // {
-            //     centerLabel.Text = "Touch Down";
-            // }
-            // else if (e.Touch.GetState(0) == PointStateType.Up)
-            // {
-            //     centerLabel.Text = "Touch Up";
-            // }
-
             return true;
         }
 
@@ -242,10 +239,10 @@ namespace Tizen.NUI.WindowSystem
         }
 
         private InputGesture inputGesture;
-        IntPtr edgeSwipeG;
-        IntPtr edgeDragG;
-        IntPtr tapG;
-        IntPtr palmG;
+        WS.EdgeSwipeGesture edgeSwipeGesture;
+        WS.EdgeDragGesture edgeDragGesture;
+        WS.TapGesture tapGesture;
+        WS.PalmCoverGesture palmGesture;
         private TextLabel centerLabel;
         int repeatCounter = 0;
         int touchCounter = 0;
