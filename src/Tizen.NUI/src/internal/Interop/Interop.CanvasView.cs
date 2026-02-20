@@ -21,37 +21,37 @@ namespace Tizen.NUI
     {
         internal static partial class CanvasView
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_New__SWIG_0")]
-            public static extern global::System.IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_New__SWIG_0")]
+            public static partial global::System.IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_New__SWIG_1")]
-            public static extern global::System.IntPtr New();
+            [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_New__SWIG_1")]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_CanvasView")]
-            public static extern void DeleteCanvasView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_CanvasView")]
+            public static partial void DeleteCanvasView(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_AddDrawable")]
+            [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_AddDrawable")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AddDrawable(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static partial bool AddDrawable(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_RemoveDrawable")]
+            [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_RemoveDrawable")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool RemoveDrawable(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static partial bool RemoveDrawable(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_RemoveAllDrawables")]
-            public static extern void RemoveAllDrawables(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_RemoveAllDrawables")]
+            public static partial void RemoveAllDrawables(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_RequestRasterization")]
-            public static extern void RequestRasterization(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_RequestRasterization")]
+            public static partial void RequestRasterization(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_Property_VIEWBOX_get")]
-            public static extern int PropertyViewBoxGet();
+            [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_Property_VIEWBOX_get")]
+            public static partial int PropertyViewBoxGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_Property_SYNCHRONOUS_LOADING_get")]
-            public static extern int PropertySynchronousLoadingGet();
+            [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_Property_SYNCHRONOUS_LOADING_get")]
+            public static partial int PropertySynchronousLoadingGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_Property_RASTERIZATION_REQUEST_MANUALLY_get")]
-            public static extern int PropertyRasterizationRequestManuallyGet();
+            [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_Property_RASTERIZATION_REQUEST_MANUALLY_get")]
+            public static partial int PropertyRasterizationRequestManuallyGet();
         }
     }
 }
