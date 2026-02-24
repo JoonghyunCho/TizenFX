@@ -22,27 +22,27 @@ namespace Tizen.NUI
         internal static partial class CanvasView
         {
             [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_New__SWIG_0")]
-            public static partial global::System.IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial global::System.IntPtr New([global::System.Runtime.InteropServices.Marshalling.MarshalUsing(typeof(global::Tizen.NUI.HandleRefMarshaller))] global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_New__SWIG_1")]
             public static partial global::System.IntPtr New();
 
             [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_CanvasView")]
-            public static partial void DeleteCanvasView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial void DeleteCanvasView([global::System.Runtime.InteropServices.Marshalling.MarshalUsing(typeof(global::Tizen.NUI.HandleRefMarshaller))] global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_AddDrawable")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static partial bool AddDrawable(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static partial bool AddDrawable([global::System.Runtime.InteropServices.Marshalling.MarshalUsing(typeof(global::Tizen.NUI.HandleRefMarshaller))] global::System.Runtime.InteropServices.HandleRef jarg1, [global::System.Runtime.InteropServices.Marshalling.MarshalUsing(typeof(global::Tizen.NUI.HandleRefMarshaller))] global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_RemoveDrawable")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static partial bool RemoveDrawable(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static partial bool RemoveDrawable([global::System.Runtime.InteropServices.Marshalling.MarshalUsing(typeof(global::Tizen.NUI.HandleRefMarshaller))] global::System.Runtime.InteropServices.HandleRef jarg1, [global::System.Runtime.InteropServices.Marshalling.MarshalUsing(typeof(global::Tizen.NUI.HandleRefMarshaller))] global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_RemoveAllDrawables")]
-            public static partial void RemoveAllDrawables(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial void RemoveAllDrawables([global::System.Runtime.InteropServices.Marshalling.MarshalUsing(typeof(global::Tizen.NUI.HandleRefMarshaller))] global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_RequestRasterization")]
-            public static partial void RequestRasterization(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial void RequestRasterization([global::System.Runtime.InteropServices.Marshalling.MarshalUsing(typeof(global::Tizen.NUI.HandleRefMarshaller))] global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_Property_VIEWBOX_get")]
             public static partial int PropertyViewBoxGet();
@@ -55,3 +55,5 @@ namespace Tizen.NUI
         }
     }
 }
+
+
