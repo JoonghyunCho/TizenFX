@@ -1276,7 +1276,8 @@ namespace Tizen.NUI.BaseComponents
             UpdateImage();
 
 
-            Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr, ImageView.Property.IMAGE, ActionReload);
+            Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr.Handle, ImageView.Property.IMAGE, ActionReload);
+            global::System.GC.KeepAlive(this);
         }
 
         /// <summary>
@@ -1289,7 +1290,8 @@ namespace Tizen.NUI.BaseComponents
             UpdateImage();
 
 
-            Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr, ImageView.Property.IMAGE, ActionPlay);
+            Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr.Handle, ImageView.Property.IMAGE, ActionPlay);
+            global::System.GC.KeepAlive(this);
         }
 
         /// <summary>
@@ -1302,7 +1304,8 @@ namespace Tizen.NUI.BaseComponents
             UpdateImage();
 
 
-            Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr, ImageView.Property.IMAGE, ActionPause);
+            Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr.Handle, ImageView.Property.IMAGE, ActionPause);
+            global::System.GC.KeepAlive(this);
         }
 
         /// <summary>
@@ -1316,7 +1319,8 @@ namespace Tizen.NUI.BaseComponents
 
 
 
-            Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr, ImageView.Property.IMAGE, ActionStop);
+            Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr.Handle, ImageView.Property.IMAGE, ActionStop);
+            global::System.GC.KeepAlive(this);
         }
 
         /// <summary>
@@ -2143,7 +2147,9 @@ namespace Tizen.NUI.BaseComponents
                 UpdateImage(Visual.Property.MixColor, mixColor, false);
 
                 // Update property
-                _ = Interop.View.InternalUpdateVisualPropertyVector4(SwigCPtr, Property.IMAGE, Visual.Property.MixColor, Vector4.getCPtr(color));
+                _ = Interop.View.InternalUpdateVisualPropertyVector4(SwigCPtr.Handle, Property.IMAGE, Visual.Property.MixColor, Vector4.getCPtr(color).Handle);
+                global::System.GC.KeepAlive(this);
+                global::System.GC.KeepAlive(color);
             }
         }
 

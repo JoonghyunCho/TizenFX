@@ -1,4 +1,6 @@
-﻿/*
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +24,7 @@ namespace Tizen.NUI
         internal static partial class PinchGesture
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGestureDetector_New")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr PinchGestureDetectorNew();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PinchGestureDetector")]
@@ -37,7 +39,7 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGestureDetector_DetectedSignal")]
             public static extern global::System.IntPtr PinchGestureDetectorDetectedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_New")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr New(int jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PinchGesture")]
@@ -71,7 +73,7 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGestureDetectedSignal_Emit")]
             public static extern void PinchGestureDetectedSignalEmit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PinchGestureDetectedSignal")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr NewPinchGestureDetectedSignal();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PinchGestureDetectedSignal")]
@@ -79,3 +81,11 @@ namespace Tizen.NUI
         }
     }
 }
+
+
+
+
+
+
+
+

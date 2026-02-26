@@ -1,3 +1,5 @@
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 /*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
@@ -21,9 +23,16 @@ namespace Tizen.NUI
     {
         internal static partial class GraphicsCapabilities
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IsBlendEquationSupported")]
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsBlendEquationSupported(int blendEquation);
+            public static partial bool IsBlendEquationSupported(int blendEquation);
         }
     }
 }
+
+
+
+
+
+
+

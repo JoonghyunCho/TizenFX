@@ -1,4 +1,6 @@
-﻿/*
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -37,7 +39,7 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurViewSignal_Emit")]
             public static extern void Emit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_GaussianBlurViewSignal")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr NewGaussianBlurViewSignal();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_GaussianBlurViewSignal")]
@@ -45,3 +47,11 @@ namespace Tizen.NUI
         }
     }
 }
+
+
+
+
+
+
+
+

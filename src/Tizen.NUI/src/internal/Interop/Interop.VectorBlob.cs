@@ -1,4 +1,6 @@
-﻿/*
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -45,7 +47,7 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_a_get")]
             public static extern byte AGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VectorBlob")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr NewVectorBlob();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_VectorBlob")]
@@ -53,3 +55,11 @@ namespace Tizen.NUI
         }
     }
 }
+
+
+
+
+
+
+
+

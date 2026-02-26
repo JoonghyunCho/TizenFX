@@ -1,4 +1,6 @@
-﻿/*
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,17 +22,23 @@ namespace Tizen.NUI
     {
         internal static partial class AnimatedImageView
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedImageVisual_Actions_PLAY_get")]
-            public static extern int AnimatedImageVisualActionPlayGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int AnimatedImageVisualActionPlayGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedImageVisual_Actions_PAUSE_get")]
-            public static extern int AnimatedImageVisualActionPauseGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int AnimatedImageVisualActionPauseGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedImageVisual_Actions_STOP_get")]
-            public static extern int AnimatedImageVisualActionStopGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int AnimatedImageVisualActionStopGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedImageVisual_Actions_JUMP_TO_get")]
-            public static extern int AnimatedImageVisualActionJumpToGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int AnimatedImageVisualActionJumpToGet();
         }
     }
 }
+
+
+
+
+
+

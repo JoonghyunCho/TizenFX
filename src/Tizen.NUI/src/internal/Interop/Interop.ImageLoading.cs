@@ -1,4 +1,6 @@
-﻿/*
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,7 +34,7 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromFile__SWIG_3")]
             public static extern global::System.IntPtr LoadImageFromFile(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromFile__SWIG_4")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr LoadImageFromFile(string jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromBuffer__SWIG_0")]
@@ -62,10 +64,10 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetClosestImageSize__SWIG_3")]
             public static extern global::System.IntPtr GetClosestImageSize(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetClosestImageSize__SWIG_4")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr GetClosestImageSize(string jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetOriginalImageSize")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr GetOriginalImageSize(string jarg1, bool jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DownloadImageSynchronously__SWIG_0")]
@@ -80,8 +82,16 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DownloadImageSynchronously__SWIG_3")]
             public static extern global::System.IntPtr DownloadImageSynchronously(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DownloadImageSynchronously__SWIG_4")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr DownloadImageSynchronously(string jarg1);
         }
     }
 }
+
+
+
+
+
+
+
+

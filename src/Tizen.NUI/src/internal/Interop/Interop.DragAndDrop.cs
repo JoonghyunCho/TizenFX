@@ -1,4 +1,6 @@
-﻿/*
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
+/*
  * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,7 +31,7 @@ namespace Tizen.NUI
                 Drop
             }
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_New__SWIG_0")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr New();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_StartDragAndDrop")]
@@ -52,18 +54,28 @@ namespace Tizen.NUI
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool WindowRemoveListener(global::System.Runtime.InteropServices.HandleRef dragAndDrop, global::System.Runtime.InteropServices.HandleRef targetWindow, global::System.Runtime.InteropServices.HandleRef callback);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragEvent_GetAction")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern int GetAction(global::System.IntPtr dragAndDrop);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragEvent_GetPosition")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr GetPosition(global::System.IntPtr dragAndDrop);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragEvent_GetMimeTypes")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool GetMimeTypes(global::System.IntPtr dragAndDrop, out global::System.IntPtr mimeTypes, out int count);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragEvent_GetData")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern string GetData(global::System.IntPtr dragAndDrop);
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

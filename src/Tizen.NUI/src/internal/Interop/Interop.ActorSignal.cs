@@ -15,6 +15,7 @@
  *
  */
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -96,3 +97,4 @@ namespace Tizen.NUI
         }
     }
 }
+

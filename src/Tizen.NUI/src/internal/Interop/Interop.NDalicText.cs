@@ -1,4 +1,6 @@
-﻿/*
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,32 +23,38 @@ namespace Tizen.NUI
     {
         internal static partial class NDalicText
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TEXT_VISUAL_TEXT_get")]
-            public static extern int TextVisualTextGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int TextVisualTextGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TEXT_VISUAL_FONT_FAMILY_get")]
-            public static extern int TextVisualFontFamilyGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int TextVisualFontFamilyGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TEXT_VISUAL_FONT_STYLE_get")]
-            public static extern int TextVisualFontStyleGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int TextVisualFontStyleGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TEXT_VISUAL_POINT_SIZE_get")]
-            public static extern int TextVisualPointSizeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int TextVisualPointSizeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TEXT_VISUAL_MULTI_LINE_get")]
-            public static extern int TextVisualMultiLineGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int TextVisualMultiLineGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TEXT_VISUAL_HORIZONTAL_ALIGNMENT_get")]
-            public static extern int TextVisualHorizontalAlignmentGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int TextVisualHorizontalAlignmentGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TEXT_VISUAL_VERTICAL_ALIGNMENT_get")]
-            public static extern int TextVisualVerticalAlignmentGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int TextVisualVerticalAlignmentGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TEXT_VISUAL_TEXT_COLOR_get")]
-            public static extern int TextVisualTextColorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int TextVisualTextColorGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TEXT_VISUAL_ENABLE_MARKUP_get")]
-            public static extern int TextVisualEnableMarkupGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int TextVisualEnableMarkupGet();
         }
     }
 }
+
+
+
+
+
+

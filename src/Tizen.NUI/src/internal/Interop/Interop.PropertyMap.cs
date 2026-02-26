@@ -16,6 +16,7 @@
  */
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -23,7 +24,7 @@ namespace Tizen.NUI
     {
         internal static partial class PropertyMap
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Property_Map__SWIG_0")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr NewPropertyMap();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Property_Map__SWIG_1")]
@@ -199,3 +200,10 @@ namespace Tizen.NUI
         }
     }
 }
+
+
+
+
+
+
+

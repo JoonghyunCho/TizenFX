@@ -1,4 +1,4 @@
-namespace Tizen.NUI
+﻿namespace Tizen.NUI
 {
     using global::System;
     using global::System.Runtime.InteropServices;
@@ -28,3 +28,4 @@ namespace Tizen.NUI
         }
     }
 }
+

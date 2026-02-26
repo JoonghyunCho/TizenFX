@@ -1,3 +1,5 @@
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 /*
  * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
@@ -28,8 +30,16 @@ namespace Tizen.NUI.ParticleSystem
             internal delegate void ParticleSourceInitInvokerType(IntPtr ptr);
             internal delegate uint ParticleSourceUpdateInvokerType(IntPtr ptr, uint count);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleSource_New_SWIG_0")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             internal static extern global::System.IntPtr New(ParticleSourceInitInvokerType initInvoker, ParticleSourceUpdateInvokerType updateInvoker, out IntPtr refObject);
         }
     }
 }
+
+
+
+
+
+
+
+

@@ -1,3 +1,5 @@
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 /*
  * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
@@ -99,8 +101,8 @@ namespace Tizen.NUI.ParticleSystem
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleRenderer_GetBlendingMode")]
             internal static extern int GetBlendingMode(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_NewParticle")]
-            internal static extern int NewParticle(global::System.IntPtr emitter, float lifetime);
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            internal static partial int NewParticle(global::System.IntPtr emitter, float lifetime);
 
             // ParticleList
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStreamInt")]
@@ -124,4 +126,10 @@ namespace Tizen.NUI.ParticleSystem
         }
     }
 }
+
+
+
+
+
+
 

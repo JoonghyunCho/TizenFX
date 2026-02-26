@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,6 +17,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -27,41 +28,48 @@ namespace Tizen.NUI
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public delegate void SayCallback(string status);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_say")]
-            public static extern void Say(string arg1_text, bool arg2_discardable, SayCallback arg3_callback);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
+            public static extern void Say(string arg1_text, [global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)] bool arg2_discardable, SayCallback arg3_callback);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_pause_resume")]
-            public static extern void PauseResume(bool jarg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
+            public static extern void PauseResume([global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)] bool jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_stop_reading")]
-            public static extern void StopReading(bool jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial void StopReading([global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)] bool jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_suppress_screen_reader")]
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
             [return: MarshalAs(UnmanagedType.U1)]
-            public static extern bool SuppressScreenReader(bool jarg1);
+            public static partial bool SuppressScreenReader([global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)] bool jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_BridgeEnableAutoInit")]
-            public static extern void BridgeEnableAutoInit();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial void BridgeEnableAutoInit();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_BridgeDisableAutoInit")]
-            public static extern void BridgeDisableAutoInit();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial void BridgeDisableAutoInit();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_IsEnabled")]
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
             [return: MarshalAs(UnmanagedType.U1)]
-            public static extern bool IsEnabled();
+            public static partial bool IsEnabled();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_IsScreenReaderEnabled")]
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
             [return: MarshalAs(UnmanagedType.U1)]
-            public static extern bool IsScreenReaderEnabled();
+            public static partial bool IsScreenReaderEnabled();
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public delegate void EnabledDisabledSignalHandler();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_RegisterEnabledDisabledSignalHandler")]
-            public static extern void RegisterEnabledDisabledSignalHandler(EnabledDisabledSignalHandler enabledSignalHandler, EnabledDisabledSignalHandler disabledSignalHandler);
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial void RegisterEnabledDisabledSignalHandler(EnabledDisabledSignalHandler enabledSignalHandler, EnabledDisabledSignalHandler disabledSignalHandler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_RegisterScreenReaderEnabledDisabledSignalHandler")]
-            public static extern void RegisterScreenReaderEnabledDisabledSignalHandler(EnabledDisabledSignalHandler enabledSignalHandler, EnabledDisabledSignalHandler disabledSignalHandler);
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial void RegisterScreenReaderEnabledDisabledSignalHandler(EnabledDisabledSignalHandler enabledSignalHandler, EnabledDisabledSignalHandler disabledSignalHandler);
         }
     }
 }
+
+
+
+
+
+
+

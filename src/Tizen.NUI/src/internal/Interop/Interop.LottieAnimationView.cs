@@ -1,4 +1,6 @@
-﻿/*
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,14 +23,20 @@ namespace Tizen.NUI
         internal static partial class LottieAnimationView
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedVectorImageVisual_Actions_JUMP_TO_get")]
-            public static extern int AnimatedVectorImageVisualActionJumpToGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int AnimatedVectorImageVisualActionJumpToGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedVectorImageVisual_Actions_SET_DYNAMIC_PROPERTY_get")]
-            public static extern int AnimatedVectorImageVisualActionSetDynamicPropertyGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int AnimatedVectorImageVisualActionSetDynamicPropertyGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedVectorImageVisual_Actions_FLUSH_get")]
-            public static extern int AnimatedVectorImageVisualActionFlushGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int AnimatedVectorImageVisualActionFlushGet();
         }
     }
 }
+
+
+
+
+
+

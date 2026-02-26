@@ -1,4 +1,6 @@
-﻿/*
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +23,7 @@ namespace Tizen.NUI
     {
         internal static partial class ConstraintFunction
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Boolean_New")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr BooleanFunctionNew();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Boolean_SetHandler")]
@@ -34,7 +36,7 @@ namespace Tizen.NUI
             public static extern void DeleteBooleanFunction(global::System.Runtime.InteropServices.HandleRef function);
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Float_New")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr FloatFunctionNew();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Float_SetHandler")]
@@ -47,7 +49,7 @@ namespace Tizen.NUI
             public static extern void DeleteFloatFunction(global::System.Runtime.InteropServices.HandleRef function);
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Integer_New")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr IntegerFunctionNew();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Integer_SetHandler")]
@@ -60,7 +62,7 @@ namespace Tizen.NUI
             public static extern void DeleteIntegerFunction(global::System.Runtime.InteropServices.HandleRef function);
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Vector2_New")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr Vector2FunctionNew();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Vector2_SetHandler")]
@@ -73,7 +75,7 @@ namespace Tizen.NUI
             public static extern void DeleteVector2Function(global::System.Runtime.InteropServices.HandleRef function);
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Vector3_New")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr Vector3FunctionNew();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Vector3_SetHandler")]
@@ -86,7 +88,7 @@ namespace Tizen.NUI
             public static extern void DeleteVector3Function(global::System.Runtime.InteropServices.HandleRef function);
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Vector4_New")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr Vector4FunctionNew();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Vector4_SetHandler")]
@@ -99,7 +101,7 @@ namespace Tizen.NUI
             public static extern void DeleteVector4Function(global::System.Runtime.InteropServices.HandleRef function);
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Matrix3_New")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr Matrix3FunctionNew();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Matrix3_SetHandler")]
@@ -112,7 +114,7 @@ namespace Tizen.NUI
             public static extern void DeleteMatrix3Function(global::System.Runtime.InteropServices.HandleRef function);
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Matrix_New")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr MatrixFunctionNew();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Matrix_SetHandler")]
@@ -125,7 +127,7 @@ namespace Tizen.NUI
             public static extern void DeleteMatrixFunction(global::System.Runtime.InteropServices.HandleRef function);
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Quaternion_New")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr RotationFunctionNew();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Function_Quaternion_SetHandler")]
@@ -139,3 +141,11 @@ namespace Tizen.NUI
         }
     }
 }
+
+
+
+
+
+
+
+

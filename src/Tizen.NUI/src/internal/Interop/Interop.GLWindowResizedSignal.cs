@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +16,7 @@
  */
 
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -39,7 +40,7 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_ResizedSignal_Emit")]
             public static extern void GlWindowResizedSignalEmit(HandleRef jarg1, HandleRef jarg2);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_GlWindow_ResizedSignal")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr NewGlWindowResizedSignal();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_delete_ResizedSignal")]
@@ -47,3 +48,10 @@ namespace Tizen.NUI
         }
     }
 }
+
+
+
+
+
+
+

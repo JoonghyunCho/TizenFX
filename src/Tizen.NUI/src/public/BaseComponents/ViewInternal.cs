@@ -1065,7 +1065,8 @@ namespace Tizen.NUI.BaseComponents
         internal bool IsBackgroundEmpty()
         {
             int visualType = (int)Visual.Type.Invalid;
-            _ = Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, Property.BACKGROUND, Visual.Property.Type, out visualType);
+            _ = Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr.Handle, Property.BACKGROUND, Visual.Property.Type, out visualType);
+            global::System.GC.KeepAlive(this);
             return visualType == (int)Visual.Type.Invalid;
         }
 
@@ -1075,7 +1076,8 @@ namespace Tizen.NUI.BaseComponents
         internal bool IsShadowEmpty()
         {
             int visualType = (int)Visual.Type.Invalid;
-            _ = Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, Property.SHADOW, Visual.Property.Type, out visualType);
+            _ = Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr.Handle, Property.SHADOW, Visual.Property.Type, out visualType);
+            global::System.GC.KeepAlive(this);
             return visualType == (int)Visual.Type.Invalid;
         }
 

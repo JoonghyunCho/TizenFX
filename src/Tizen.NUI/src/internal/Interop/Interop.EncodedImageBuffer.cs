@@ -1,3 +1,5 @@
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 /*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
@@ -37,11 +39,17 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_GetImageType")]
             public static extern int GetImageType(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_GetRawBuffer")]
-            public static extern IntPtr GetRawBuffer(IntPtr handle);
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial IntPtr GetRawBuffer(IntPtr handle);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_GenerateUrl")]
-            public static extern IntPtr GenerateUrl(IntPtr handle);
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial IntPtr GenerateUrl(IntPtr handle);
         }
     }
 }
+
+
+
+
+
+

@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 using Tizen.NUI;
 using Tizen.Applications;
@@ -60,3 +61,4 @@ namespace Tizen.NUI
         }
     }
 }
+

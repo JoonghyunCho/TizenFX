@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +16,7 @@
  */
 
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -23,50 +24,58 @@ namespace Tizen.NUI
     {
         internal static partial class WindowBlurInfo
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WindowBlurInfo")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr New();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WindowBlurInfo_SWIG_0")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr New(int nuiBlurType, int nuiBlurRadius, int nuiCornerRadius);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WindowBlurInfo_SWIG_1")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr New(int nuiBlurType, int nuiBlurRadius);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WindowBlurInfo_SWIG_2")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr New(int nuiBlurType, int nuiBlurRadius, int nuiCornerRadius, global::System.IntPtr nuiDimInfo);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WindowBlurInfo")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern void DeleteWindowBlurInfo(global::System.IntPtr nuiWindowBlurInfo);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBlurInfo_GetBlurType")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern int GetBlurType(global::System.IntPtr nuiWindowBlurInfo);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBlurInfo_GetBlurRadius")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern int GetBlurRadius(global::System.IntPtr nuiWindowBlurInfo);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBlurInfo_GetBackgroundCornerRadius")]
-            public static extern int GetBackgroundCornerRadius(global::System.IntPtr nuiWindowBlurInfo);
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int GetBackgroundCornerRadius(global::System.IntPtr nuiWindowBlurInfo);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBlurInfo_SetBehindBlurDimInfo")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern void SetBehindBlurDimInfo(global::System.IntPtr nuiWindowBlurInfo, global::System.IntPtr nuiDimInfo);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBlurInfo_GetBehindBlurDimInfo")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr GetBehindBlurDimInfo(global::System.IntPtr nuiWindowBlurInfo);
         }
 
         internal static partial class WindowDimInfo
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WindowDimInfo")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr New(int enable, global::System.IntPtr dimColor);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WindowDimInfo")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern void DeleteWindowDimInfo(global::System.IntPtr nuiWindowDimInfo);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowDimInfo_GetIsEnabled")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern int GetIsEnabled(global::System.IntPtr nuiWindowDimInfo);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowDimInfo_GetDimColor")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr GetDimColor(global::System.IntPtr nuiWindowDimInfo);
         }
     }
 }
+
+
+
+
+
+
+
+

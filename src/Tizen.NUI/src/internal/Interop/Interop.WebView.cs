@@ -1,4 +1,6 @@
-﻿/*
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
+/*
  * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,23 +26,23 @@ namespace Tizen.NUI
     {
         internal static partial class WebView
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_New")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern IntPtr New();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_New_2")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern IntPtr New2(string jarg1, string jarg2);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_New_3")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern IntPtr New3(int jarg1, string[] jarg2);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_New_4")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern IntPtr New4(int argc, string[] argv, int type);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetContext")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern IntPtr GetWebContext();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetCookieManager")]
-            public static extern IntPtr GetWebCookieManager();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial IntPtr GetWebCookieManager();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WebView__SWIG_1")]
             public static extern IntPtr NewWebView(HandleRef jarg1);
@@ -54,11 +56,11 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_DownCast")]
             public static extern IntPtr DownCast(HandleRef jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_URL_get")]
-            public static extern int UrlGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int UrlGet();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_USER_AGENT_get")]
-            public static extern int UserAgentGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int UserAgentGet();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetBackForwardList")]
             public static extern IntPtr GetWebBackForwardList(HandleRef jarg1);
@@ -66,50 +68,50 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetSettings")]
             public static extern IntPtr GetWebSettings(HandleRef jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_SCROLL_POSITION_get")]
-            public static extern int ScrollPositionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int ScrollPositionGet();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_SCROLL_SIZE_get")]
-            public static extern int ScrollSizeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int ScrollSizeGet();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_CONTENT_SIZE_get")]
-            public static extern int ContentSizeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int ContentSizeGet();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_TITLE_get")]
-            public static extern int TitleGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int TitleGet();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_VIDEO_HOLE_ENABLED_get")]
-            public static extern int VideoHoleEnabledGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int VideoHoleEnabledGet();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_MOUSE_EVENTS_ENABLED_get")]
-            public static extern int MouseEventsEnabledGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int MouseEventsEnabledGet();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_KEY_EVENTS_ENABLED_get")]
-            public static extern int KeyEventsEnabledGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int KeyEventsEnabledGet();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_DOCUMENT_BACKGROUND_COLOR_get")]
-            public static extern int DocumentBackgroundColorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int DocumentBackgroundColorGet();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_TILES_CLEARED_WHEN_HIDDEN_get")]
-            public static extern int TilesClearedWhenHiddenGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int TilesClearedWhenHiddenGet();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_TILE_COVER_AREA_MULTIPLIER_get")]
-            public static extern int TileCoverAreaMultiplierGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int TileCoverAreaMultiplierGet();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_CURSOR_ENABLED_BY_CLIENT_get")]
-            public static extern int CursorEnabledByClientGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int CursorEnabledByClientGet();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_SELECTED_TEXT_get")]
-            public static extern int SelectedTextGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int SelectedTextGet();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_PAGE_ZOOM_FACTOR_get")]
-            public static extern int PageZoomFactorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int PageZoomFactorGet();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_TEXT_ZOOM_FACTOR_get")]
-            public static extern int TextZoomFactorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int TextZoomFactorGet();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_LOAD_PROGRESS_PERCENTAGE_get")]
-            public static extern int LoadProgressPercentageGet();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial int LoadProgressPercentageGet();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetFavicon")]
             public static extern IntPtr GetFavicon(HandleRef jarg1);
@@ -273,8 +275,8 @@ namespace Tizen.NUI
             [return: MarshalAs(UnmanagedType.U1)]
             public static extern bool CreateHitTestAsynchronously(HandleRef jarg1, int jarg2, int jarg3, int jarg4, HandleRef jarg5);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_SWIGUpcast")]
-            public static extern IntPtr Upcast(IntPtr jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial IntPtr Upcast(IntPtr jarg1);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_SetTtsFocus")]
             public static extern void SetTtsFocus(HandleRef jarg1, bool jarg2);
@@ -377,3 +379,10 @@ namespace Tizen.NUI
         }
     }
 }
+
+
+
+
+
+
+

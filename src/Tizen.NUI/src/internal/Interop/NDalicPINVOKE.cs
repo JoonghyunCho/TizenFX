@@ -1,3 +1,5 @@
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 /*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
@@ -47,7 +49,7 @@ namespace Tizen.NUI
             static ExceptionArgumentDelegate argumentNullDelegate = new ExceptionArgumentDelegate(SetPendingArgumentNullException);
             static ExceptionArgumentDelegate argumentOutOfRangeDelegate = new ExceptionArgumentDelegate(SetPendingArgumentOutOfRangeException);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "SWIGRegisterExceptionCallbacks_NDalic")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_SWIGRegisterExceptionCallbacks_NDalic")]
             public static extern void SWIGRegisterExceptionCallbacksNDalic(
                                         ExceptionDelegate applicationDelegate,
                                         ExceptionDelegate arithmeticDelegate,
@@ -61,7 +63,7 @@ namespace Tizen.NUI
                                         ExceptionDelegate overflowDelegate,
                                         ExceptionDelegate systemExceptionDelegate);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "SWIGRegisterExceptionArgumentCallbacks_NDalic")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_SWIGRegisterExceptionArgumentCallbacks_NDalic")]
             public static extern void SWIGRegisterExceptionArgumentCallbacksNDalic(
                                         ExceptionArgumentDelegate argumentDelegate,
                                         ExceptionArgumentDelegate argumentNullDelegate,
@@ -163,7 +165,7 @@ namespace Tizen.NUI
         }
 
         /// <since_tizen> 3 </since_tizen>
-        public class SWIGPendingException
+        public partial class SWIGPendingException
         {
             [global::System.ThreadStatic]
             private static global::System.Exception pendingException = null;
@@ -218,13 +220,13 @@ namespace Tizen.NUI
                 return e;
             }
         }
-        public class SWIGStringHelper
+        public partial class SWIGStringHelper
         {
             /// <since_tizen> 3 </since_tizen>
             public delegate string SWIGStringDelegate(string message);
             static SWIGStringDelegate stringDelegate = new SWIGStringDelegate(CreateString);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "SWIGRegisterStringCallback_NDalic")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_SWIGRegisterStringCallback_NDalic")]
             public static extern void SWIGRegisterStringCallbackNDalic(SWIGStringDelegate stringDelegate);
             static string CreateString(string cString)
             {
@@ -255,7 +257,7 @@ namespace Tizen.NUI
             ThrowExceptionIfExists();
         }
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_New__MANUAL_4")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_New_Manual_4")]
         public static extern global::System.IntPtr ApplicationNewManual4(int jarg1, string jarg2, string jarg3, int jarg4);
 
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_New_WithWindowSizePosition")]
@@ -323,7 +325,7 @@ namespace Tizen.NUI
         public static extern global::System.IntPtr ApplicationTaskDeviceOrientationChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
     }
 
-    internal static class NDalicExtension
+    internal static partial class NDalicExtension
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal static global::System.Runtime.InteropServices.HandleRef ToHandleRef(this Delegate caller, object wrapper)
@@ -332,3 +334,5 @@ namespace Tizen.NUI
         }
     }
 }
+
+

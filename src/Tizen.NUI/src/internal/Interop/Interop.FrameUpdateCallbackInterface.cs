@@ -1,4 +1,6 @@
-﻿/*
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +23,7 @@ namespace Tizen.NUI
     {
         internal static partial class FrameUpdateCallbackInterface
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FrameCallbackInterface")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr newFrameUpdateCallbackInterface();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FrameCallbackInterface")]
@@ -102,11 +104,11 @@ namespace Tizen.NUI
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool FrameCallbackInterfaceBakeColor(global::System.IntPtr proxy, uint id, global::System.Runtime.InteropServices.HandleRef vector);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_SetIgnored")]
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool FrameCallbackInterfaceSetIgnored(global::System.IntPtr proxy, uint id, [global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)] bool ignored);
+            public static partial bool FrameCallbackInterfaceSetIgnored(global::System.IntPtr proxy, uint id, [global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)] bool ignored);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_GetIgnored")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool FrameCallbackInterfaceGetIgnored(global::System.IntPtr proxy, uint id, [global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)] out bool ignored);
 
@@ -118,37 +120,46 @@ namespace Tizen.NUI
 
             // UIVector2 and UIColor
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_GetPositionVector2Componentwise")]
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool FrameCallbackInterfaceGetPositionVector2Componentwise(global::System.IntPtr proxy, uint id, ref float x, ref float y);
+            public static partial bool FrameCallbackInterfaceGetPositionVector2Componentwise(global::System.IntPtr proxy, uint id, ref float x, ref float y);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_BakePositionVector2Componentwise")]
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool FrameCallbackInterfaceBakePositionVector2Componentwise(global::System.IntPtr proxy, uint id, float x, float y);
+            public static partial bool FrameCallbackInterfaceBakePositionVector2Componentwise(global::System.IntPtr proxy, uint id, float x, float y);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_GetSizeVector2Componentwise")]
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool FrameCallbackInterfaceGetSizeVector2Componentwise(global::System.IntPtr proxy, uint id, ref float x, ref float y);
+            public static partial bool FrameCallbackInterfaceGetSizeVector2Componentwise(global::System.IntPtr proxy, uint id, ref float x, ref float y);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_BakeSizeVector2Componentwise")]
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool FrameCallbackInterfaceBakeSizeVector2Componentwise(global::System.IntPtr proxy, uint id, float x, float y);
+            public static partial bool FrameCallbackInterfaceBakeSizeVector2Componentwise(global::System.IntPtr proxy, uint id, float x, float y);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_GetScaleVector2Componentwise")]
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool FrameCallbackInterfaceGetScaleVector2Componentwise(global::System.IntPtr proxy, uint id, ref float x, ref float y);
+            public static partial bool FrameCallbackInterfaceGetScaleVector2Componentwise(global::System.IntPtr proxy, uint id, ref float x, ref float y);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_BakeScaleVector2Componentwise")]
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool FrameCallbackInterfaceBakeScaleVector2Componentwise(global::System.IntPtr proxy, uint id, float x, float y);
+            public static partial bool FrameCallbackInterfaceBakeScaleVector2Componentwise(global::System.IntPtr proxy, uint id, float x, float y);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_GetColorVector4Componentwise")]
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool FrameCallbackInterfaceGetColorVector4Componentwise(global::System.IntPtr proxy, uint id, ref float r, ref float g, ref float b, ref float a);
+            public static partial bool FrameCallbackInterfaceGetColorVector4Componentwise(global::System.IntPtr proxy, uint id, ref float r, ref float g, ref float b, ref float a);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_BakeColorVector4Componentwise")]
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool FrameCallbackInterfaceBakeColorVector4Componentwise(global::System.IntPtr proxy, uint id, float r, float g, float b, float a);
+            public static partial bool FrameCallbackInterfaceBakeColorVector4Componentwise(global::System.IntPtr proxy, uint id, float r, float g, float b, float a);
         }
     }
 }
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,19 +25,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Animation.DeleteAnimationSignal(swigCPtr);
+            Interop.Animation.DeleteAnimationSignal(swigCPtr.Handle);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.Animation.AnimationSignalEmpty(SwigCPtr);
+            bool ret = Interop.Animation.AnimationSignalEmpty(SwigCPtr.Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.Animation.AnimationSignalGetConnectionCount(SwigCPtr);
+            uint ret = Interop.Animation.AnimationSignalGetConnectionCount(SwigCPtr.Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -46,19 +46,19 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.Animation.AnimationSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.Animation.AnimationSignalConnect(SwigCPtr.Handle, ip);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Connect(System.IntPtr callback)
         {
-            Interop.Animation.AnimationSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, callback));
+            Interop.Animation.AnimationSignalConnect(SwigCPtr.Handle, callback);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         public void Disconnect(System.IntPtr callback)
         {
-            Interop.Animation.AnimationSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, callback));
+            Interop.Animation.AnimationSignalDisconnect(SwigCPtr.Handle, callback);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -66,14 +66,14 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.Animation.AnimationSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.Animation.AnimationSignalDisconnect(SwigCPtr.Handle, ip);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(Animation arg)
         {
-            Interop.Animation.AnimationSignalEmit(SwigCPtr, Animation.getCPtr(arg));
+            Interop.Animation.AnimationSignalEmit(SwigCPtr.Handle, Animation.getCPtr(arg).Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -83,3 +83,4 @@ namespace Tizen.NUI
         }
     }
 }
+

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2020-2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 
 namespace Tizen.NUI
@@ -118,7 +119,7 @@ namespace Tizen.NUI
             public static extern void DaliAccessibilitySetSuppressedEvent(HandleRef arg1, int accessibilityEvent, bool isSuppressed);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_new_Range")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern IntPtr DaliAccessibilityNewRange(int arg1_start, int arg2_end, string arg3_content);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
@@ -130,20 +131,20 @@ namespace Tizen.NUI
             public static extern void DaliAccessibilityBridgeUnregisterDefaultLabel(HandleRef arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_GetCurrentlyHighlightedActor")]
-            public static extern IntPtr DaliAccessibilityAccessibleGetCurrentlyHighlightedActor();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial IntPtr DaliAccessibilityAccessibleGetCurrentlyHighlightedActor();
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_GetHighlightActor")]
-            public static extern IntPtr DaliAccessibilityAccessibleGetHighlightActor();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial IntPtr DaliAccessibilityAccessibleGetHighlightActor();
 
             [EditorBrowsable(EditorBrowsableState.Never)]
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_SetHighlightActor")]
             public static extern void DaliAccessibilityAccessibleSetHighlightActor(HandleRef arg1);
 
 #if false
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActionSignal")]
-            public static extern IntPtr DaliToolkitDevelControlAccessibilityActionSignal(BaseComponents.View.ControlHandle arg1);
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial IntPtr DaliToolkitDevelControlAccessibilityActionSignal(BaseComponents.View.ControlHandle arg1);
 #endif
 
             [EditorBrowsable(EditorBrowsableState.Never)]
@@ -157,7 +158,7 @@ namespace Tizen.NUI
             // Keep this structure layout binary compatible with the respective C++ structure!
             [EditorBrowsable(EditorBrowsableState.Never)]
             [StructLayout(LayoutKind.Sequential)]
-            public class AccessibilityDelegate
+            public partial class AccessibilityDelegate
             {
                 private AccessibilityDelegate()
                 {
@@ -512,17 +513,23 @@ namespace Tizen.NUI
                 public AccessibilityGetCellColumnSpan GetCellColumnSpan; // 64
             }
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_DuplicateString")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern IntPtr DaliAccessibilityDuplicateString(string arg);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_MakeIntPair")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern IntPtr DaliAccessibilityMakeIntPair(int first, int second);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_SetAccessibilityDelegate")]
-            public static extern IntPtr DaliAccessibilitySetAccessibilityDelegate(IntPtr arg1_accessibilityDelegate, uint arg2_accessibilityDelegateSize);
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial IntPtr DaliAccessibilitySetAccessibilityDelegate(IntPtr arg1_accessibilityDelegate, uint arg2_accessibilityDelegateSize);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_DetachAccessibleObject")]
             public static extern void DaliAccessibilityDetachAccessibleObject(HandleRef arg1_control);
         }
     }
 }
+
+
+
+
+
+

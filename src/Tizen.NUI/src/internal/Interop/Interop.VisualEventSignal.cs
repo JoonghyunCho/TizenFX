@@ -17,6 +17,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -40,8 +41,8 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualEventSignal_Emit")]
             public static extern void Emit(HandleRef jarg1, HandleRef jarg2, int jarg3, int jarg4);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VisualEventSignal")]
-            public static extern IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial IntPtr New();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_VisualEventSignal")]
             public static extern void Delete(HandleRef jarg1);
@@ -51,3 +52,8 @@ namespace Tizen.NUI
         }
     }
 }
+
+
+
+
+

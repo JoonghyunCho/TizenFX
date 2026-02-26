@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +22,7 @@ namespace Tizen.NUI
 
     internal static partial class Interop
     {
-        internal static class RenderEffect
+        internal static partial class RenderEffect
         {
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderEffect_Activate")]
             public static extern void Activate(HandleRef effect);
@@ -38,3 +38,4 @@ namespace Tizen.NUI
         }
     }
 }
+

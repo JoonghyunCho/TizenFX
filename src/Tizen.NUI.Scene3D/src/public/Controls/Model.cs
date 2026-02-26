@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -342,7 +342,7 @@ namespace Tizen.NUI.Scene3D
             {
                 // We found matched NUI animation. Reduce cPtr reference count.
                 HandleRef handle = new HandleRef(this, cPtr);
-                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle.Handle);
                 handle = new HandleRef(null, IntPtr.Zero);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -369,7 +369,7 @@ namespace Tizen.NUI.Scene3D
             {
                 // We found matched NUI animation. Reduce cPtr reference count.
                 HandleRef handle = new HandleRef(this, cPtr);
-                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle.Handle);
                 handle = new HandleRef(null, IntPtr.Zero);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -462,7 +462,7 @@ namespace Tizen.NUI.Scene3D
             {
                 // We found matched NUI animation. Reduce cPtr reference count.
                 HandleRef handle = new HandleRef(this, cPtr);
-                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle.Handle);
                 handle = new HandleRef(null, IntPtr.Zero);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -495,7 +495,7 @@ namespace Tizen.NUI.Scene3D
             {
                 // We found matched NUI animation. Reduce cPtr reference count.
                 HandleRef handle = new HandleRef(this, cPtr);
-                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle.Handle);
                 handle = new HandleRef(null, IntPtr.Zero);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -549,7 +549,7 @@ namespace Tizen.NUI.Scene3D
             {
                 // We found matched NUI animation. Reduce cPtr reference count.
                 HandleRef handle = new HandleRef(this, cPtr);
-                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle.Handle);
                 handle = new HandleRef(null, IntPtr.Zero);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -577,7 +577,7 @@ namespace Tizen.NUI.Scene3D
             {
                 // We found matched NUI animation. Reduce cPtr reference count.
                 HandleRef handle = new HandleRef(this, cPtr);
-                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle.Handle);
                 handle = new HandleRef(null, IntPtr.Zero);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -607,7 +607,7 @@ namespace Tizen.NUI.Scene3D
             else
             {
                 // We found matched NUI animation. Reduce cPtr reference count.
-                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle.Handle);
                 handle = new HandleRef(null, IntPtr.Zero);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -855,3 +855,4 @@ namespace Tizen.NUI.Scene3D
         }
     }
 }
+

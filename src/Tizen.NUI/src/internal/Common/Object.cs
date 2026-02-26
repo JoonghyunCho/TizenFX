@@ -77,7 +77,8 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.Actor.InternalSetPropertyString(actor, propertyType, valString);
+            var ret = Interop.Actor.InternalSetPropertyString(actor.Handle, propertyType, valString);
+            global::System.GC.KeepAlive(actor.Wrapper);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -92,7 +93,8 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.Actor.InternalGetPropertyString(actor, propertyType);
+            var ret = Interop.Actor.InternalGetPropertyString(actor.Handle, propertyType);
+            global::System.GC.KeepAlive(actor.Wrapper);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -107,7 +109,8 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.Actor.InternalSetPropertyBool(actor, propertyType, valBool);
+            var ret = Interop.Actor.InternalSetPropertyBool(actor.Handle, propertyType, valBool);
+            global::System.GC.KeepAlive(actor.Wrapper);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -122,7 +125,8 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.Actor.InternalGetPropertyBool(actor, propertyType);
+            var ret = Interop.Actor.InternalGetPropertyBool(actor.Handle, propertyType);
+            global::System.GC.KeepAlive(actor.Wrapper);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -137,7 +141,9 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.Actor.InternalSetPropertyVector4(actor, propertyType, vector4);
+            var ret = Interop.Actor.InternalSetPropertyVector4(actor.Handle, propertyType, vector4.Handle);
+            global::System.GC.KeepAlive(actor.Wrapper);
+            global::System.GC.KeepAlive(vector4.Wrapper);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -152,7 +158,9 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.Actor.InternalRetrievingPropertyVector4(actor, propertyType, retrievingVector4);
+            var ret = Interop.Actor.InternalRetrievingPropertyVector4(actor.Handle, propertyType, retrievingVector4.Handle);
+            global::System.GC.KeepAlive(actor.Wrapper);
+            global::System.GC.KeepAlive(retrievingVector4.Wrapper);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -167,7 +175,8 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.Actor.InternalGetPropertyInt(actor, propertyType);
+            var ret = Interop.Actor.InternalGetPropertyInt(actor.Handle, propertyType);
+            global::System.GC.KeepAlive(actor.Wrapper);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -182,7 +191,8 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.Actor.InternalSetPropertyInt(actor, propertyType, valInt);
+            var ret = Interop.Actor.InternalSetPropertyInt(actor.Handle, propertyType, valInt);
+            global::System.GC.KeepAlive(actor.Wrapper);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -197,7 +207,9 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.Actor.InternalRetrievingPropertyVector3(actor, propertyType, retrievingVector3);
+            var ret = Interop.Actor.InternalRetrievingPropertyVector3(actor.Handle, propertyType, retrievingVector3.Handle);
+            global::System.GC.KeepAlive(actor.Wrapper);
+            global::System.GC.KeepAlive(retrievingVector3.Wrapper);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -212,7 +224,9 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.Actor.InternalSetPropertyVector3(actor, propertyType, vector3);
+            var ret = Interop.Actor.InternalSetPropertyVector3(actor.Handle, propertyType, vector3.Handle);
+            global::System.GC.KeepAlive(actor.Wrapper);
+            global::System.GC.KeepAlive(vector3.Wrapper);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -227,7 +241,8 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.Actor.InternalGetPropertyFloat(actor, propertyType);
+            var ret = Interop.Actor.InternalGetPropertyFloat(actor.Handle, propertyType);
+            global::System.GC.KeepAlive(actor.Wrapper);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -242,7 +257,8 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.Actor.InternalSetPropertyFloat(actor, propertyType, valFloat);
+            var ret = Interop.Actor.InternalSetPropertyFloat(actor.Handle, propertyType, valFloat);
+            global::System.GC.KeepAlive(actor.Wrapper);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -257,7 +273,9 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.Actor.InternalRetrievingPropertyVector2(actor, propertyType, retrievingVector2);
+            var ret = Interop.Actor.InternalRetrievingPropertyVector2(actor.Handle, propertyType, retrievingVector2.Handle);
+            global::System.GC.KeepAlive(actor.Wrapper);
+            global::System.GC.KeepAlive(retrievingVector2.Wrapper);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -272,7 +290,9 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.Actor.InternalSetPropertyVector2(actor, propertyType, vector2);
+            var ret = Interop.Actor.InternalSetPropertyVector2(actor.Handle, propertyType, vector2.Handle);
+            global::System.GC.KeepAlive(actor.Wrapper);
+            global::System.GC.KeepAlive(vector2.Wrapper);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -287,7 +307,9 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.Actor.InternalRetrievingPropertyVector2ActualVector3(actor, propertyType, retrievingVector2);
+            var ret = Interop.Actor.InternalRetrievingPropertyVector2ActualVector3(actor.Handle, propertyType, retrievingVector2.Handle);
+            global::System.GC.KeepAlive(actor.Wrapper);
+            global::System.GC.KeepAlive(retrievingVector2.Wrapper);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -302,7 +324,9 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.Actor.InternalSetPropertyVector2ActualVector3(actor, propertyType, vector2);
+            var ret = Interop.Actor.InternalSetPropertyVector2ActualVector3(actor.Handle, propertyType, vector2.Handle);
+            global::System.GC.KeepAlive(actor.Wrapper);
+            global::System.GC.KeepAlive(vector2.Wrapper);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -317,7 +341,8 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.View.InternalRetrievingVisualPropertyInt(actor, visualIndex, visualPropertyIndex, out retrievingInt);
+            var ret = Interop.View.InternalRetrievingVisualPropertyInt(actor.Handle, visualIndex, visualPropertyIndex, out retrievingInt);
+            global::System.GC.KeepAlive(actor.Wrapper);
             NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
@@ -328,7 +353,9 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            var ret = Interop.View.InternalRetrievingVisualPropertyVector4(actor, visualIndex, visualPropertyIndex, retrievingVector4);
+            var ret = Interop.View.InternalRetrievingVisualPropertyVector4(actor.Handle, visualIndex, visualPropertyIndex, retrievingVector4.Handle);
+            global::System.GC.KeepAlive(actor.Wrapper);
+            global::System.GC.KeepAlive(retrievingVector4.Wrapper);
             NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
@@ -349,7 +376,9 @@ namespace Tizen.NUI
             ReusablePool<Vector4>.GetOne((vector4, actor, propertyType, color) =>
             {
                 vector4.Reset(color);
-                _ = Interop.Actor.InternalSetPropertyVector4(actor, propertyType, vector4.SwigCPtr);
+                _ = Interop.Actor.InternalSetPropertyVector4(actor.Handle, propertyType, vector4.SwigCPtr.Handle);
+                global::System.GC.KeepAlive(actor.Wrapper);
+                global::System.GC.KeepAlive(vector4.SwigCPtr.Wrapper);
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }, actor, propertyType, color);
         }
@@ -370,7 +399,9 @@ namespace Tizen.NUI
             return ReusablePool<Vector4>.GetOne((vector4, actor, visualIndex, visualPropertyIndex) =>
             {
                 vector4.Reset();
-                _ = Interop.View.InternalRetrievingVisualPropertyVector4(actor, visualIndex, visualPropertyIndex, vector4.SwigCPtr);
+                _ = Interop.View.InternalRetrievingVisualPropertyVector4(actor.Handle, visualIndex, visualPropertyIndex, vector4.SwigCPtr.Handle);
+                global::System.GC.KeepAlive(actor.Wrapper);
+                global::System.GC.KeepAlive(vector4.SwigCPtr.Wrapper);
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 return UIColor.From(vector4);
             }, actor, visualIndex, visualPropertyIndex);
@@ -386,7 +417,9 @@ namespace Tizen.NUI
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
 
-            _ = Interop.Actor.InternalSetPropertyExtents(actor, propertyType, value.SwigCPtr);
+            _ = Interop.Actor.InternalSetPropertyExtents(actor.Handle, propertyType, value.SwigCPtr.Handle);
+            global::System.GC.KeepAlive(actor.Wrapper);
+            global::System.GC.KeepAlive(value.SwigCPtr.Wrapper);
             NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
@@ -400,7 +433,9 @@ namespace Tizen.NUI
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
 
-            _ = Interop.Actor.InternalRetrievingPropertyExtents(actor, propertyType, retrievingValue);
+            _ = Interop.Actor.InternalRetrievingPropertyExtents(actor.Handle, propertyType, retrievingValue.Handle);
+            global::System.GC.KeepAlive(actor.Wrapper);
+            global::System.GC.KeepAlive(retrievingValue.Wrapper);
             NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
@@ -420,7 +455,9 @@ namespace Tizen.NUI
             ReusablePool<Extents>.GetOne((extents, actor, propertyType, value) =>
             {
                 extents.Reset(value);
-                _ = Interop.Actor.InternalSetPropertyExtents(actor, propertyType, extents.SwigCPtr);
+                _ = Interop.Actor.InternalSetPropertyExtents(actor.Handle, propertyType, extents.SwigCPtr.Handle);
+                global::System.GC.KeepAlive(actor.Wrapper);
+                global::System.GC.KeepAlive(extents.SwigCPtr.Wrapper);
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }, actor, propertyType, value);
         }
@@ -440,7 +477,9 @@ namespace Tizen.NUI
 
             return ReusablePool<Extents>.GetOne((extents, actor, propertyType) =>
             {
-                _ = Interop.Actor.InternalRetrievingPropertyExtents(actor, propertyType, extents.SwigCPtr);
+                _ = Interop.Actor.InternalRetrievingPropertyExtents(actor.Handle, propertyType, extents.SwigCPtr.Handle);
+                global::System.GC.KeepAlive(actor.Wrapper);
+                global::System.GC.KeepAlive(extents.SwigCPtr.Wrapper);
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 return new UIExtents(extents.Start, extents.End, extents.Top, extents.Bottom);
             }, actor, propertyType);
@@ -452,7 +491,9 @@ namespace Tizen.NUI
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
-            _ = Interop.Actor.InternalSetPropertyMap(actor, propertyType, map);
+            _ = Interop.Actor.InternalSetPropertyMap(actor.Handle, propertyType, map.Handle);
+            global::System.GC.KeepAlive(actor.Wrapper);
+            global::System.GC.KeepAlive(map.Wrapper);
             NDalicPINVOKE.ThrowExceptionIfExists();
         }
     }

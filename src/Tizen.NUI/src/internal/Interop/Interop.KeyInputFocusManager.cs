@@ -1,4 +1,6 @@
-﻿/*
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,14 +26,14 @@ namespace Tizen.NUI
     {
         internal static partial class KeyInputFocusManager
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_KeyInputFocusManager")]
-            public static extern IntPtr NewKeyInputFocusManager();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial IntPtr NewKeyInputFocusManager();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_KeyInputFocusManager")]
             public static extern void DeleteKeyInputFocusManager(HandleRef jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_Get")]
-            public static extern IntPtr Get();
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial IntPtr Get();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_SetFocus")]
             public static extern void SetFocus(HandleRef jarg1, HandleRef jarg2);
@@ -44,3 +46,9 @@ namespace Tizen.NUI
         }
     }
 }
+
+
+
+
+
+

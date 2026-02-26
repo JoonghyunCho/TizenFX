@@ -1,3 +1,5 @@
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 /*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
@@ -24,11 +26,17 @@ namespace Tizen.NUI
     {
         internal static partial class StringToVoidSignal
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_StringToVoid_GetResult")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern string GetResult(global::System.IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_StringToVoid_SetResult")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern void SetResult(global::System.IntPtr jarg1, string jarg2);
         }
     }
 }
+
+
+
+
+
+

@@ -1,4 +1,6 @@
-﻿/*
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
+/*
  * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,8 +23,14 @@ namespace Tizen.NUI
     {
         internal static partial class AlphaFunctionSpringData
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AlphaFunctionSpringData_GetDuration")]
-            public static extern float GetDuration(float stiffness, float damping, float mass);
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial float GetDuration(float stiffness, float damping, float mass);
         }
     }
 }
+
+
+
+
+
+

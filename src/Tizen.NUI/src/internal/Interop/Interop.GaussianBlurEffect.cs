@@ -1,3 +1,5 @@
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 /*
  * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
@@ -21,10 +23,10 @@ namespace Tizen.NUI
 
     internal static partial class Interop
     {
-        internal static class GaussianBlurEffect
+        internal static partial class GaussianBlurEffect
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurEffect_New__SWIG_1")]
-            public static extern IntPtr New(uint blurRadius);
+            [LibraryImport(NDalicPINVOKE.Lib, StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
+            public static partial IntPtr New(uint blurRadius);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurEffect_SetBlurOnce")]
             public static extern void SetBlurOnce(HandleRef effect, bool blurRadius);
@@ -59,3 +61,9 @@ namespace Tizen.NUI
         }
     }
 }
+
+
+
+
+
+

@@ -5444,9 +5444,10 @@ namespace Tizen.NUI.BaseComponents
                 internalSize = new Size(OnSizeChanged, 0, 0, 0);
             }
 
-            var w = Interop.Actor.InternalGetPropertyFloat(SwigCPtr, Property.SizeWidth);
-            var h = Interop.Actor.InternalGetPropertyFloat(SwigCPtr, Property.SizeHeight);
-            var d = Interop.Actor.InternalGetPropertyFloat(SwigCPtr, Property.SizeDepth);
+            var w = Interop.Actor.InternalGetPropertyFloat(SwigCPtr.Handle, Property.SizeWidth);
+            var h = Interop.Actor.InternalGetPropertyFloat(SwigCPtr.Handle, Property.SizeHeight);
+            var d = Interop.Actor.InternalGetPropertyFloat(SwigCPtr.Handle, Property.SizeDepth);
+            global::System.GC.KeepAlive(this);
 
             internalSize.ResetValue(w, h, d);
 

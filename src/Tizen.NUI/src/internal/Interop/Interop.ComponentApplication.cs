@@ -1,3 +1,5 @@
+﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 /*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
@@ -25,7 +27,7 @@ namespace Tizen.NUI
         internal static partial class ComponentApplication
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ComponentApplication")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib)]
             public static extern global::System.IntPtr New(int argc, string argv, string styleSheet);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ComponentApplication_SWIG1")]
@@ -48,3 +50,11 @@ namespace Tizen.NUI
         }
     }
 }
+
+
+
+
+
+
+
+
