@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen;
 using Tizen.Multimedia.Util;
 
@@ -28,30 +29,30 @@ internal static partial class Interop
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void DecodeCompletedCallback(ImageUtilError error, IntPtr userData, int width, int height, ulong size);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_create")]
-            public static extern ImageUtilError Create(out ImageDecoderHandle handle);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_create", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial ImageUtilError Create(out ImageDecoderHandle handle);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_destroy")]
-            internal static extern ImageUtilError Destroy(IntPtr handle);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_destroy", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError Destroy(IntPtr handle);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_input_path")]
-            internal static extern ImageUtilError SetInputPath(ImageDecoderHandle handle, IntPtr path);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_input_path", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError SetInputPath(ImageDecoderHandle handle, IntPtr path);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_input_buffer")]
-            internal static extern ImageUtilError SetInputBuffer(ImageDecoderHandle handle, byte[] srcBuffer, ulong srcSize);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_input_buffer", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError SetInputBuffer(ImageDecoderHandle handle, byte[] srcBuffer, ulong srcSize);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_colorspace")]
-            internal static extern ImageUtilError SetColorspace(ImageDecoderHandle handle, ImageColorSpace colorspace);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_colorspace", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError SetColorspace(ImageDecoderHandle handle, ImageColorSpace colorspace);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_jpeg_downscale")]
-            internal static extern ImageUtilError SetJpegDownscale(ImageDecoderHandle handle, JpegDownscale downscale);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_jpeg_downscale", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError SetJpegDownscale(ImageDecoderHandle handle, JpegDownscale downscale);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_run2")]
-            internal static extern ImageUtilError DecodeRun(ImageDecoderHandle handle, out IntPtr imageHandle);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_run2", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError DecodeRun(ImageDecoderHandle handle, out IntPtr imageHandle);
         }
     }
 
-    internal class ImageDecoderHandle : SafeHandle
+    internal partial class ImageDecoderHandle : SafeHandle
     {
         protected ImageDecoderHandle() : base(IntPtr.Zero, true)
         {
