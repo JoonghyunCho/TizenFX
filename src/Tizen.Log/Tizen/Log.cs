@@ -93,6 +93,91 @@ namespace Tizen
             }
         }
 
+        private static unsafe void _Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, ReadOnlySpan<char> messageSpan, string file, string func, int line)
+        {
+            if (tag == null)
+                tag = String.Empty;
+            if (file == null)
+                file = String.Empty;
+            if (func == null)
+                func = String.Empty;
+
+            int tagByteLength = Encoding.UTF8.GetMaxByteCount(tag.Length);
+            Span<byte> tagByte = tagByteLength < 1024 ? stackalloc byte[tagByteLength + 1] : new byte[tagByteLength + 1];
+
+            int messageByteLength = Encoding.UTF8.GetMaxByteCount(messageSpan.Length);
+            // Rent from array pool if the buffer size is too large to fit in stack
+            byte[] rentedMessageBuffer = null;
+            Span<byte> messageByte;
+            if (messageByteLength < 2048)
+            {
+                byte* pMessage = stackalloc byte[messageByteLength + 1];
+                messageByte = new Span<byte>(pMessage, messageByteLength + 1);
+            }
+            else
+            {
+                rentedMessageBuffer = System.Buffers.ArrayPool<byte>.Shared.Rent(messageByteLength + 1);
+                messageByte = rentedMessageBuffer;
+            }
+
+            try
+            {
+                fixed (char* pTagChar = tag)
+                fixed (char* pMessageChar = &MemoryMarshal.GetReference(messageSpan))
+                fixed (byte* pTagByte = &MemoryMarshal.GetReference(tagByte))
+                fixed (byte* pMessageByte = &MemoryMarshal.GetReference(messageByte))
+                fixed (byte* pFmt1Byte = fmt1)
+                fixed (byte* pFmt2Byte = fmt2)
+                {
+                    int len = Encoding.UTF8.GetBytes(pTagChar, tag.Length, pTagByte, tagByteLength);
+                    pTagByte[len] = 0;
+                    len = Encoding.UTF8.GetBytes(messageSpan, messageByte);
+                    pMessageByte[len] = 0;
+
+                    if (String.IsNullOrEmpty(file))
+                    {
+                        if (log_id == Interop.Dlog.LogID.LOG_ID_INVALID)
+                            Interop.Dlog.Print(priority, pTagByte, pFmt1Byte, pMessageByte);
+                        else
+                            Interop.Dlog.InternalPrint(log_id, priority, pTagByte, pFmt1Byte, pMessageByte);
+                        return;
+                    }
+
+                    int index = file.LastIndexOfAny(sep) + 1;
+                    int filenameLength = file.Length - index;
+
+                    int filenameByteLength = Encoding.UTF8.GetMaxByteCount(filenameLength);
+                    Span<byte> filenameByte = filenameByteLength < 1024 ? stackalloc byte[filenameByteLength + 1] : new byte[filenameByteLength + 1];
+
+                    int funcByteLength = Encoding.UTF8.GetMaxByteCount(func.Length);
+                    Span<byte> funcByte = funcByteLength < 1024 ? stackalloc byte[funcByteLength + 1] : new byte[funcByteLength + 1];
+
+                    fixed (char* pFilenameChar = file)
+                    fixed (char* pFuncChar = func)
+                    fixed (byte* pFilenameByte = &MemoryMarshal.GetReference(filenameByte))
+                    fixed (byte* pFuncByte = &MemoryMarshal.GetReference(funcByte))
+                    {
+                        len = Encoding.UTF8.GetBytes(pFilenameChar + index, filenameLength, pFilenameByte, filenameByteLength);
+                        pFilenameByte[len] = 0;
+                        len = Encoding.UTF8.GetBytes(pFuncChar, func.Length, pFuncByte, funcByteLength);
+                        pFuncByte[len] = 0;
+
+                        if (log_id == Interop.Dlog.LogID.LOG_ID_INVALID)
+                            Interop.Dlog.Print(priority, pTagByte, pFmt2Byte, pFilenameByte, pFuncByte, line, pMessageByte);
+                        else
+                            Interop.Dlog.InternalPrint(log_id, priority, pTagByte, pFmt2Byte, pFilenameByte, pFuncByte, line, pMessageByte);
+                    }
+                }
+            }
+            finally
+            {
+                if (rentedMessageBuffer != null)
+                {
+                    System.Buffers.ArrayPool<byte>.Shared.Return(rentedMessageBuffer);
+                }
+            }
+        }
+
         private static unsafe void _PrintFallback(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
         {
             fixed (byte* pTagByte = Encoding.UTF8.GetBytes(tag))
@@ -146,6 +231,30 @@ namespace Tizen
                 _PrintFallback(log_id, priority, tag, message, file, func, line);
             }
         }
+
+        public static unsafe void Print(Interop.Dlog.LogPriority priority, string tag, ReadOnlySpan<char> messageSpan, string file, string func, int line)
+        {
+            try
+            {
+                _Print(Interop.Dlog.LogID.LOG_ID_INVALID, priority, tag, messageSpan, file, func, line);
+            }
+            catch (StackOverflowException)
+            {
+                _PrintFallback(Interop.Dlog.LogID.LOG_ID_INVALID, priority, tag, messageSpan.ToString(), file, func, line);
+            }
+        }
+
+        public static unsafe void Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, ReadOnlySpan<char> messageSpan, string file, string func, int line)
+        {
+            try
+            {
+                _Print(log_id, priority, tag, messageSpan, file, func, line);
+            }
+            catch (StackOverflowException)
+            {
+                _PrintFallback(log_id, priority, tag, messageSpan.ToString(), file, func, line);
+            }
+        }
     }
 
     /// <summary>
@@ -171,6 +280,20 @@ namespace Tizen
         }
 
         /// <summary>
+        /// Prints a regular log message with the VERBOSE priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Verbose(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            Print(Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, handler.GetSpan(), file, func, line);
+        }
+
+        /// <summary>
         /// Prints a regular log message with the DEBUG priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -182,6 +305,20 @@ namespace Tizen
         public static void Debug(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             Print(Interop.Dlog.LogPriority.DLOG_DEBUG, tag, message, file, func, line);
+        }
+
+        /// <summary>
+        /// Prints a regular log message with the DEBUG priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Debug(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            Print(Interop.Dlog.LogPriority.DLOG_DEBUG, tag, handler.GetSpan(), file, func, line);
         }
 
         /// <summary>
@@ -199,6 +336,20 @@ namespace Tizen
         }
 
         /// <summary>
+        /// Prints a regular log message with the INFO priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Info(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            Print(Interop.Dlog.LogPriority.DLOG_INFO, tag, handler.GetSpan(), file, func, line);
+        }
+
+        /// <summary>
         /// Prints a regular log message with the WARNING priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -210,6 +361,20 @@ namespace Tizen
         public static void Warn(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             Print(Interop.Dlog.LogPriority.DLOG_WARN, tag, message, file, func, line);
+        }
+
+        /// <summary>
+        /// Prints a regular log message with the WARNING priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Warn(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            Print(Interop.Dlog.LogPriority.DLOG_WARN, tag, handler.GetSpan(), file, func, line);
         }
 
         /// <summary>
@@ -227,6 +392,20 @@ namespace Tizen
         }
 
         /// <summary>
+        /// Prints a regular log message with the ERROR priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Error(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            Print(Interop.Dlog.LogPriority.DLOG_ERROR, tag, handler.GetSpan(), file, func, line);
+        }
+
+        /// <summary>
         /// Prints a regular log message with the FATAL priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -240,9 +419,28 @@ namespace Tizen
             Print(Interop.Dlog.LogPriority.DLOG_FATAL, tag, message, file, func, line);
         }
 
+        /// <summary>
+        /// Prints a regular log message with the FATAL priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Fatal(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            Print(Interop.Dlog.LogPriority.DLOG_FATAL, tag, handler.GetSpan(), file, func, line);
+        }
+
         static unsafe void Print(Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
         {
             LogPrinter.Print(priority, tag, message, file, func, line);
+        }
+
+        static unsafe void Print(Interop.Dlog.LogPriority priority, string tag, ReadOnlySpan<char> messageSpan, string file, string func, int line)
+        {
+            LogPrinter.Print(priority, tag, messageSpan, file, func, line);
         }
     }
 
@@ -268,6 +466,21 @@ namespace Tizen
         {
             // For internal dlog APIs, Verbose level log is disabled
             // Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, message, file, func, line);
+        }
+
+        /// <summary>
+        /// Prints an internal log message with the VERBOSE priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Verbose(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            // For internal dlog APIs, Verbose level log is disabled
+            // Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, handler.GetSpan(), file, func, line);
         }
 
         /// <summary>
@@ -299,6 +512,20 @@ namespace Tizen
         }
 
         /// <summary>
+        /// Prints an internal log message with the INFO priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Info(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_INFO, tag, handler.GetSpan(), file, func, line);
+        }
+
+        /// <summary>
         /// Prints an internal log message with the WARNING priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -310,6 +537,20 @@ namespace Tizen
         public static void Warn(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_WARN, tag, message, file, func, line);
+        }
+
+        /// <summary>
+        /// Prints an internal log message with the WARNING priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Warn(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_WARN, tag, handler.GetSpan(), file, func, line);
         }
 
         /// <summary>
@@ -327,6 +568,20 @@ namespace Tizen
         }
 
         /// <summary>
+        /// Prints an internal log message with the ERROR priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Error(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_ERROR, tag, handler.GetSpan(), file, func, line);
+        }
+
+        /// <summary>
         /// Prints an internal log message with the FATAL priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -340,9 +595,28 @@ namespace Tizen
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_FATAL, tag, message, file, func, line);
         }
 
+        /// <summary>
+        /// Prints an internal log message with the FATAL priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Fatal(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_FATAL, tag, handler.GetSpan(), file, func, line);
+        }
+
         static unsafe void Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
         {
             LogPrinter.Print(log_id, priority, tag, message, file, func, line);
+        }
+
+        static unsafe void Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, ReadOnlySpan<char> messageSpan, string file, string func, int line)
+        {
+            LogPrinter.Print(log_id, priority, tag, messageSpan, file, func, line);
         }
     }
 
@@ -371,6 +645,21 @@ namespace Tizen
         }
 
         /// <summary>
+        /// Prints a secure log message with the VERBOSE priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Verbose(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            // For internal dlog APIs, Verbose level log is disabled
+            // Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, handler.GetSpan(), file, func, line);
+        }
+
+        /// <summary>
         /// Prints a secure log message with the DEBUG priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -382,6 +671,20 @@ namespace Tizen
         public static void Debug(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_DEBUG, tag, message, file, func, line);
+        }
+
+        /// <summary>
+        /// Prints a secure log message with the DEBUG priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Debug(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_DEBUG, tag, handler.GetSpan(), file, func, line);
         }
 
         /// <summary>
@@ -399,6 +702,20 @@ namespace Tizen
         }
 
         /// <summary>
+        /// Prints a secure log message with the INFO priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Info(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_INFO, tag, handler.GetSpan(), file, func, line);
+        }
+
+        /// <summary>
         /// Prints a secure log message with the WARNING priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -410,6 +727,20 @@ namespace Tizen
         public static void Warn(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_WARN, tag, message, file, func, line);
+        }
+
+        /// <summary>
+        /// Prints a secure log message with the WARNING priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Warn(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_WARN, tag, handler.GetSpan(), file, func, line);
         }
 
         /// <summary>
@@ -427,6 +758,20 @@ namespace Tizen
         }
 
         /// <summary>
+        /// Prints a secure log message with the ERROR priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Error(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_ERROR, tag, handler.GetSpan(), file, func, line);
+        }
+
+        /// <summary>
         /// Prints a secure log message with the FATAL priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -440,10 +785,31 @@ namespace Tizen
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_FATAL, tag, message, file, func, line);
         }
 
+        /// <summary>
+        /// Prints a secure log message with the FATAL priority using an interpolated string handler.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="handler">The interpolated string handler.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        public static void Fatal(string tag, ref TizenLogInterpolatedStringHandler handler, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        {
+            Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_FATAL, tag, handler.GetSpan(), file, func, line);
+        }
+
         static unsafe void Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
         {
 #if !DISABLE_SECURELOG
             LogPrinter.Print(log_id, priority, tag, message, file, func, line);
+#endif
+        }
+
+        static unsafe void Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, ReadOnlySpan<char> messageSpan, string file, string func, int line)
+        {
+#if !DISABLE_SECURELOG
+            LogPrinter.Print(log_id, priority, tag, messageSpan, file, func, line);
 #endif
         }
     }

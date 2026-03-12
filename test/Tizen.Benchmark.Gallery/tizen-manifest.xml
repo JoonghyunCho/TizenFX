@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="10" package="org.tizen.example.Tizen.Benchmark.Gallery" version="1.0.0">
+  <profile name="common" />
+  <ui-application appid="org.tizen.example.Tizen.Benchmark.Gallery"
+					exec="Tizen.Benchmark.Gallery.dll"
+					type="dotnet-nui"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single">
+    <label>Tizen.Benchmark.Gallery</label>
+  </ui-application>
+  <privileges>
+    <privilege>http://tizen.org/privilege/internet</privilege>
+  </privileges>
+</manifest>
