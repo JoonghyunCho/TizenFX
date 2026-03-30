@@ -384,15 +384,15 @@ namespace Tizen.Pims.Calendar
                 record = list.GetCurrentRecord();
                 if (0 == propertyId)
                 {
-                    if (0 == String.Compare(CalendarViews.Book.Uri, record.Uri))
+                    if (CalendarViews.Book.Uri.Equals(record.Uri, StringComparison.Ordinal))
                         propertyId = CalendarViews.Book.Id;
-                    else if (0 == String.Compare(CalendarViews.Event.Uri, record.Uri))
+                    else if (CalendarViews.Event.Uri.Equals(record.Uri, StringComparison.Ordinal))
                         propertyId = CalendarViews.Event.Id;
-                    else if (0 == String.Compare(CalendarViews.Todo.Uri, record.Uri))
+                    else if (CalendarViews.Todo.Uri.Equals(record.Uri, StringComparison.Ordinal))
                         propertyId = CalendarViews.Todo.Id;
-                    else if (0 == String.Compare(CalendarViews.Timezone.Uri, record.Uri))
+                    else if (CalendarViews.Timezone.Uri.Equals(record.Uri, StringComparison.Ordinal))
                         propertyId = CalendarViews.Timezone.Id;
-                    else if (0 == String.Compare(CalendarViews.Extended.Uri, record.Uri))
+                    else if (CalendarViews.Extended.Uri.Equals(record.Uri, StringComparison.Ordinal))
                         propertyId = CalendarViews.Extended.Id;
                     else
                     {

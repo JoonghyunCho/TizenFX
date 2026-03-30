@@ -170,7 +170,7 @@ namespace Tizen.NUI
             map.Set(ImageVisualProperty.Border, Border);
 
             string urlString = Url;
-            if (Url.StartsWith("*Resource*"))
+            if (Url.StartsWith("*Resource*", StringComparison.Ordinal))
             {
                 string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
                 urlString = Url.Replace("*Resource*", resource);

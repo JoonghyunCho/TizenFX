@@ -153,7 +153,7 @@ namespace Tizen.NUI.Binding
 
                 foreach (var refName in asm.GetReferencedAssemblies())
                 {
-                    if (!refName.Name.StartsWith("System.") && !refName.Name.StartsWith("Microsoft.") && !refName.Name.StartsWith("mscorlib"))
+                    if (!refName.Name.StartsWith("System.", StringComparison.Ordinal) && !refName.Name.StartsWith("Microsoft.", StringComparison.Ordinal) && !refName.Name.StartsWith("mscorlib", StringComparison.Ordinal))
                     {
                         try
                         {

@@ -387,7 +387,7 @@ namespace Tizen.NUI.Binding
 #if NETSTANDARD1_0
                                 foreach (MethodInfo m in sourceType.AsType().GetRuntimeMethods())
                                 {
-                                    if (m.Name.EndsWith("IElementController.SetValueFromRenderer"))
+                                    if (m.Name.EndsWith("IElementController.SetValueFromRenderer", StringComparison.Ordinal))
                                     {
                                         ParameterInfo[] parameters = m.GetParameters();
                                         if (parameters.Length == 2 && parameters[0].ParameterType == typeof(BindableProperty))
@@ -454,7 +454,7 @@ namespace Tizen.NUI.Binding
                 var stringValue = value as string ?? string.Empty;
                 // see: https://bugzilla.xamarin.com/show_bug.cgi?id=32871
                 // do not canonicalize "*.[.]"; "1." should not update bound BindableProperty
-                if (stringValue.EndsWith(".") && DecimalTypes.Contains(convertTo))
+                if (stringValue.EndsWith(".", StringComparison.Ordinal) && DecimalTypes.Contains(convertTo))
                     throw new FormatException();
 
                 // do not canonicalize "-0"; user will likely enter a period after "-0"

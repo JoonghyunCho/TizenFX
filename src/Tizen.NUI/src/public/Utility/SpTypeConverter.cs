@@ -63,7 +63,7 @@ namespace Tizen.NUI
             float convertedValue = 0;
             if (scriptValue != null)
             {
-                if (scriptValue.EndsWith("sp"))
+                if (scriptValue.EndsWith("sp", StringComparison.Ordinal))
                 {
                     convertedValue = ConvertToPixel(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("sp")), CultureInfo.InvariantCulture));
                 }
