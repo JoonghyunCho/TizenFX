@@ -891,8 +891,6 @@ namespace Tizen.NUI
             // Get default window only if pre initialize creation supported.
             if (SupportPreInitializedCreation)
             {
-                NUIApplicationInitializer.Initialize();
-
                 Log.Info("NUI", "[NUI] Preload: GetWindow");
                 Tizen.Tracer.Begin("[NUI] Preload: GetWindow");
                 var nativeWindow = Interop.Application.GetPreInitializeWindow();
