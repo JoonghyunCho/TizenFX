@@ -2174,7 +2174,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if (value.StartsWith("*Resource*"))
+            if (value.StartsWith("*Resource*", StringComparison.Ordinal))
             {
                 string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
                 value = value.Replace("*Resource*", resource);

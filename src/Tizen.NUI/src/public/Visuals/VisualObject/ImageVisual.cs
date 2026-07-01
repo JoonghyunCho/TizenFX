@@ -655,11 +655,11 @@ namespace Tizen.NUI.Visuals
                 {
                     return true;
                 }
-                if (ResourceUrl.StartsWith("dali://") || ResourceUrl.StartsWith("enbuf://"))
+                if (ResourceUrl.StartsWith("dali://", StringComparison.Ordinal) || ResourceUrl.StartsWith("enbuf://", StringComparison.Ordinal))
                 {
                     return true;
                 }
-                if (!string.IsNullOrEmpty(AlphaMaskUrl) && (AlphaMaskUrl.StartsWith("dali://") || AlphaMaskUrl.StartsWith("enbuf://")))
+                if (!string.IsNullOrEmpty(AlphaMaskUrl) && (AlphaMaskUrl.StartsWith("dali://", StringComparison.Ordinal) || AlphaMaskUrl.StartsWith("enbuf://", StringComparison.Ordinal)))
                 {
                     return true;
                 }

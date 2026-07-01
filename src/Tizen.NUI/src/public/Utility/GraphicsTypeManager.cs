@@ -288,27 +288,27 @@ namespace Tizen.NUI
             float convertedValue = 0;
             if (scriptValue != null)
             {
-                if (scriptValue.EndsWith("dp"))
+                if (scriptValue.EndsWith("dp", StringComparison.Ordinal))
                 {
                     convertedValue = Dp.ConvertScriptToPixel(scriptValue);
                 }
-                else if (scriptValue.EndsWith("sp"))
+                else if (scriptValue.EndsWith("sp", StringComparison.Ordinal))
                 {
                     convertedValue = Sp.ConvertScriptToPixel(scriptValue);
                 }
-                else if (scriptValue.EndsWith("sdp"))
+                else if (scriptValue.EndsWith("sdp", StringComparison.Ordinal))
                 {
                     convertedValue = Sdp.ConvertScriptToPixel(scriptValue);
                 }
-                else if (scriptValue.EndsWith("pt"))
+                else if (scriptValue.EndsWith("pt", StringComparison.Ordinal))
                 {
                     convertedValue = Point.ConvertScriptToPixel(scriptValue);
                 }
-                else if (scriptValue.EndsWith("spx"))
+                else if (scriptValue.EndsWith("spx", StringComparison.Ordinal))
                 {
                     convertedValue = scalingFactor * float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("spx")), CultureInfo.InvariantCulture);
                 }
-                else if (scriptValue.EndsWith("px"))
+                else if (scriptValue.EndsWith("px", StringComparison.Ordinal))
                 {
                     convertedValue = float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("px")), CultureInfo.InvariantCulture);
                 }

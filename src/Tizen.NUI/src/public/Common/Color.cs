@@ -1005,8 +1005,8 @@ namespace Tizen.NUI
                 }
                 else // example rgb(255,255,255) or rgb(255,255,255,1.0)
                 {
-                    bool isRGBA = textColor.StartsWith("RGBA(");
-                    bool isRGB = textColor.StartsWith("RGB(");
+                    bool isRGBA = textColor.StartsWith("RGBA(", StringComparison.Ordinal);
+                    bool isRGB = textColor.StartsWith("RGB(", StringComparison.Ordinal);
 
                     if (!isRGBA && !isRGB)
                     {

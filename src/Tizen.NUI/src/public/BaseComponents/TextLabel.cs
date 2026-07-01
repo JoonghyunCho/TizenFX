@@ -939,11 +939,11 @@ namespace Tizen.NUI.BaseComponents
                 return HorizontalAlignment.Begin; // Return default value.
             }
 
-            if (temp.Equals("BEGIN"))
+            if (temp.Equals("BEGIN", StringComparison.Ordinal))
             {
                 return HorizontalAlignment.Begin;
             }
-            else if (temp.Equals("CENTER"))
+            else if (temp.Equals("CENTER", StringComparison.Ordinal))
             {
                 return HorizontalAlignment.Center;
             }
@@ -998,11 +998,11 @@ namespace Tizen.NUI.BaseComponents
                 return VerticalAlignment.Top; // Return default value.
             }
 
-            if (temp.Equals("TOP"))
+            if (temp.Equals("TOP", StringComparison.Ordinal))
             {
                 return VerticalAlignment.Top;
             }
-            else if (temp.Equals("CENTER"))
+            else if (temp.Equals("CENTER", StringComparison.Ordinal))
             {
                 return VerticalAlignment.Center;
             }

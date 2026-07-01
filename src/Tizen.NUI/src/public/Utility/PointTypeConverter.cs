@@ -62,11 +62,11 @@ namespace Tizen.NUI
             float convertedValue = 0;
             if (scriptValue != null)
             {
-                if (scriptValue.EndsWith("pt"))
+                if (scriptValue.EndsWith("pt", StringComparison.Ordinal))
                 {
                     convertedValue = ConvertToPixel(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("pt")), CultureInfo.InvariantCulture));
                 }
-                else if (scriptValue.EndsWith("px"))
+                else if (scriptValue.EndsWith("px", StringComparison.Ordinal))
                 {
                     convertedValue = float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("px")), CultureInfo.InvariantCulture);
                 }
@@ -93,19 +93,19 @@ namespace Tizen.NUI
             float convertedValue = 0;
             if (scriptValue != null)
             {
-                if (scriptValue.EndsWith("sp"))
+                if (scriptValue.EndsWith("sp", StringComparison.Ordinal))
                 {
                     convertedValue = ConvertSpToPoint(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("sp")), CultureInfo.InvariantCulture));
                 }
-                else if (scriptValue.EndsWith("sdp"))
+                else if (scriptValue.EndsWith("sdp", StringComparison.Ordinal))
                 {
                     convertedValue = ConvertSdpToPoint(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("sdp")), CultureInfo.InvariantCulture));
                 }
-                else if (scriptValue.EndsWith("dp"))
+                else if (scriptValue.EndsWith("dp", StringComparison.Ordinal))
                 {
                     convertedValue = ConvertDpToPoint(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("dp")), CultureInfo.InvariantCulture));
                 }
-                else if (scriptValue.EndsWith("pt"))
+                else if (scriptValue.EndsWith("pt", StringComparison.Ordinal))
                 {
                     convertedValue = float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("px")), CultureInfo.InvariantCulture);
                 }

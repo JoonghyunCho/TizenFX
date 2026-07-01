@@ -110,7 +110,7 @@ namespace Tizen.NUI.BaseComponents
         private static string ConvertResourceUrl(ref string value)
         {
             value ??= "";
-            if (value.StartsWith("*Resource*"))
+            if (value.StartsWith("*Resource*", StringComparison.Ordinal))
             {
                 string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
                 value = value.Replace("*Resource*", resource);
@@ -587,7 +587,7 @@ namespace Tizen.NUI.BaseComponents
                         ret = urlValue.Get(out url);
                     }
                     using PropertyMap mmap = new PropertyMap();
-                    if (ret && url.StartsWith("*Resource*"))
+                    if (ret && url.StartsWith("*Resource*", StringComparison.Ordinal))
                     {
                         url = url.Replace("*Resource*", resource);
                         using var pv = new PropertyValue(url);
@@ -600,7 +600,7 @@ namespace Tizen.NUI.BaseComponents
                     {
                         ret = alphaMaskUrlValue.Get(out alphaMaskURL);
                     }
-                    if (ret && alphaMaskURL.StartsWith("*Resource*"))
+                    if (ret && alphaMaskURL.StartsWith("*Resource*", StringComparison.Ordinal))
                     {
                         alphaMaskURL = alphaMaskURL.Replace("*Resource*", resource);
                         using var pv = new PropertyValue(alphaMaskURL);
@@ -613,7 +613,7 @@ namespace Tizen.NUI.BaseComponents
                     {
                         ret = auxiliaryImageURLValue.Get(out auxiliaryImageURL);
                     }
-                    if (ret && auxiliaryImageURL.StartsWith("*Resource*"))
+                    if (ret && auxiliaryImageURL.StartsWith("*Resource*", StringComparison.Ordinal))
                     {
                         auxiliaryImageURL = auxiliaryImageURL.Replace("*Resource*", resource);
                         using var pv = new PropertyValue(auxiliaryImageURL);
@@ -2706,11 +2706,11 @@ namespace Tizen.NUI.BaseComponents
                 {
                     return true;
                 }
-                if (_resourceUrl.StartsWith("dali://") || _resourceUrl.StartsWith("enbuf://"))
+                if (_resourceUrl.StartsWith("dali://", StringComparison.Ordinal) || _resourceUrl.StartsWith("enbuf://", StringComparison.Ordinal))
                 {
                     return true;
                 }
-                if (!string.IsNullOrEmpty(_alphaMaskUrl) && (_alphaMaskUrl.StartsWith("dali://") || _alphaMaskUrl.StartsWith("enbuf://")))
+                if (!string.IsNullOrEmpty(_alphaMaskUrl) && (_alphaMaskUrl.StartsWith("dali://", StringComparison.Ordinal) || _alphaMaskUrl.StartsWith("enbuf://", StringComparison.Ordinal)))
                 {
                     return true;
                 }
